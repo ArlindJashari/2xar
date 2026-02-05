@@ -60,4 +60,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  // Mobile Menu Logic
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+  const closeMenuBtn = document.querySelector('.close-menu');
+
+  if (menuToggle && mobileMenuOverlay) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Close on link click
+    const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
 });
