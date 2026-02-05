@@ -117,7 +117,7 @@ img {
 }
 
 .brand-svg {
-  height: 50px;
+  height: 65px;
   width: auto;
   display: block;
 }
@@ -941,7 +941,8 @@ img {
   }
 
   .accordion-item.active .vertical-title::after {
-    content: '\2212'; /* Unicode minus sign */
+    content: '\2212';
+    /* Unicode minus sign */
     transform: rotate(180deg);
   }
 
@@ -1863,13 +1864,15 @@ main section {
 }
 
 .mobile-menu-overlay {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
 }
 
 /* Tablet & Mobile Navigation Logic */
 @media (max-width: 992px) {
   .hero-nav {
-    display: none !important; /* Force hide desktop nav */
+    display: none !important;
+    /* Force hide desktop nav */
   }
 
   .menu-toggle {
@@ -1960,11 +1963,12 @@ main section {
 
 /* Specific Mobile Layout Adjustments */
 @media (max-width: 768px) {
+
   /* Global */
   .container {
     padding: 0 25px;
   }
-  
+
   /* Hero Section */
   .hero-inner {
     padding-bottom: 40px;
@@ -1985,7 +1989,7 @@ main section {
     line-height: 1.1;
     margin-bottom: 15px;
   }
-  
+
   .hero-subtitle {
     margin-bottom: 15px;
     font-size: 0.7rem;
@@ -1999,7 +2003,8 @@ main section {
   }
 
   .hero-indicators {
-    display: none; /* Hide indicators on mobile for cleaner look */
+    display: none;
+    /* Hide indicators on mobile for cleaner look */
   }
 
   .hero-cta-btn {
@@ -2046,7 +2051,7 @@ main section {
     align-items: flex-start;
     gap: 30px;
   }
-  
+
   .display-title {
     font-size: 3rem;
   }
@@ -2056,7 +2061,7 @@ main section {
     gap: 30px;
     margin-top: 20px;
   }
-  
+
   .stat-num {
     font-size: 2.5rem;
   }
@@ -2069,7 +2074,7 @@ main section {
     height: auto;
     min-height: auto;
   }
-  
+
   /* Reset grid specific properties */
   .project-card.featured,
   .project-column,
@@ -2077,36 +2082,37 @@ main section {
   .project-card.small {
     grid-column: auto;
     grid-row: auto;
-    height: 400px; /* Uniform height for mobile cards */
+    height: 400px;
+    /* Uniform height for mobile cards */
   }
-  
+
   .project-column {
-     display: flex;
-     flex-direction: column;
-     gap: 40px;
-     height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: auto;
   }
 
   /* Footer */
   .footer-content {
     padding: 60px 0;
   }
-  
+
   .footer-info {
     font-size: 0.9rem;
   }
 
   /* Page Headers */
   .page-header {
-      padding: 120px 0 80px;
+    padding: 120px 0 80px;
   }
-  
+
   /* History Section adjustments */
   .history-row {
     padding: 40px 0;
   }
-  
+
   .big-year {
-      font-size: 3rem;
+    font-size: 3rem;
   }
 }
