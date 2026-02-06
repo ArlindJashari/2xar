@@ -91,27 +91,62 @@
         }
 
         .article-footer {
-            border-top: 1px solid #eee;
-            margin-top: 80px;
-            padding-top: 40px;
+            background: #000;
+            margin-top: 100px;
+            padding: 60px 0;
+            color: #fff;
+        }
+
+        .article-footer .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .back-link a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link a:hover {
+            transform: translateX(-5px);
+        }
+
+        .share-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #fff;
+            margin-right: 30px;
+            opacity: 0.8;
+        }
+
         .share-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
+            align-items: center;
         }
 
         .share-links a {
-            font-size: 1.2rem;
-            color: #777;
-            transition: color 0.3s;
+            font-size: 1.4rem;
+            color: #fff;
+            opacity: 0.6;
+            transition: all 0.3s ease;
         }
 
         .share-links a:hover {
             color: var(--color-accent);
+            opacity: 1;
+            transform: translateY(-3px);
         }
 
         @media (max-width: 768px) {
@@ -216,22 +251,22 @@
                         internal high-capacity machinery and the latest in digital project management (BIM) to ensure
                         strict adherence to timelines and safety protocols.</p>
                 </div>
-
-                <footer class="article-footer">
-                    <div class="back-link">
-                        <a href="news.html" class="project-link">&larr; Back to News</a>
-                    </div>
-                    <div class="share-links">
-                        <span
-                            style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-right: 15px; color: #999;">Share
-                            Article</span>
-                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
-                        <a href="#"><i class="ph ph-twitter-logo"></i></a>
-                        <a href="#"><i class="ph ph-link"></i></a>
-                    </div>
-                </footer>
             </div>
         </div>
+
+        <footer class="article-footer">
+            <div class="container">
+                <div class="back-link">
+                    <a href="news.html">&larr; Back to News</a>
+                </div>
+                <div class="share-links">
+                    <span class="share-label">Share Article</span>
+                    <a href="#" title="Share on LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" title="Share on Twitter"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#" title="Copy Link"><i class="ph ph-link"></i></a>
+                </div>
+            </div>
+        </footer>
 
         <!-- Related News -->
         <section class="container" style="padding: 120px 0; border-top: 1px solid #eee; margin-top: 80px;">
