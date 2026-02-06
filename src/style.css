@@ -1832,12 +1832,11 @@ main section {
 /* Partners Section Redesign */
 .partners-section {
   padding: 120px 0;
-  background-color: #fafafa;
+  background-color: #fff;
   border-top: 1px solid #eee;
 }
 
 .partners-header {
-  text-align: center;
   margin-bottom: 80px;
 }
 
@@ -1856,7 +1855,7 @@ main section {
   justify-content: center;
   align-items: center;
   filter: grayscale(100%);
-  opacity: 0.4;
+  opacity: 0.3;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
 }
@@ -1870,15 +1869,13 @@ main section {
 .partner-logo-svg {
   width: 100%;
   height: auto;
-  max-height: 40px;
-  fill: #333;
-  /* Default dark grey */
+  max-height: 50px;
+  color: #1a1a1a;
   transition: all 0.4s ease;
 }
 
 .partner-item:hover .partner-logo-svg {
-  fill: var(--color-accent);
-  /* Turn to Gold on hover */
+  color: var(--color-accent);
 }
 
 @media (max-width: 1024px) {
@@ -2185,5 +2182,182 @@ main section {
 
   .big-year {
     font-size: 3rem;
+  }
+}
+
+/* --- What We Do / Sectors Page --- */
+.sectors-header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/project_viaduct.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.capabilities-intro {
+  padding: 100px 0 60px;
+  background-color: #fff;
+}
+
+.intro-grid {
+  max-width: 800px;
+}
+
+.intro-text p {
+  font-size: 1.25rem;
+  color: #555;
+  line-height: 1.8;
+  margin-top: 30px;
+}
+
+.services-grid-section {
+  padding-bottom: 140px;
+  background-color: #fff;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 1px solid #f0f0f0;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-accent);
+}
+
+.service-image {
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  filter: grayscale(20%);
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.service-content {
+  padding: 50px 40px 40px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.service-icon-box {
+  width: 70px;
+  height: 70px;
+  background: var(--color-accent);
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border-radius: 2px;
+  position: absolute;
+  top: -35px;
+  left: 40px;
+  box-shadow: 0 10px 25px rgba(205, 175, 100, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon-box {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-content h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+}
+
+.service-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 14px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.service-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.cta-section {
+  padding: 140px 0;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+@media (max-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
   }
 }
