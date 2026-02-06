@@ -2524,6 +2524,11 @@ main section {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+.huge-btn.on-light:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
 .huge-btn i {
   font-size: 1.2rem;
   transition: transform 0.3s ease;
