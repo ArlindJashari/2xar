@@ -1829,6 +1829,61 @@ main section {
   margin-top: 20px;
 }
 
+/* Partners Section */
+.partners-section {
+  padding: 100px 0;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+.partners-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.partners-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+.partners-grid:hover {
+  opacity: 1;
+}
+
+.partner-logo {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: #999;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  user-select: none;
+  cursor: default;
+}
+
+.partner-logo:hover {
+  color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .partners-grid {
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .partner-logo {
+    font-size: 0.9rem;
+  }
+}
+
+
 @media (max-width: 992px) {
   .project-intro-grid {
     grid-template-columns: 1fr;
