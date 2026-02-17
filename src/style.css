@@ -1576,19 +1576,44 @@ main section {
   display: inline-block;
   background: black;
   color: white;
-  padding: 20px 50px;
+  padding: 18px 45px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
   border: none;
   cursor: pointer;
   align-self: flex-start;
-  transition: background 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-large:hover {
   background: var(--color-accent);
   color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Global Primary Button */
+.primary-btn {
+  display: inline-block;
+  background: var(--color-accent);
+  color: black;
+  padding: 18px 45px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-accent);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-btn:hover {
+  background: transparent;
+  color: inherit;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile Adjustments for new pages */
@@ -2502,31 +2527,33 @@ main section {
 .huge-btn {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   background: var(--color-accent);
-  color: #000;
-  padding: 25px 60px;
-  font-size: 1rem;
-  font-weight: 800;
+  color: black;
+  padding: 18px 45px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--color-accent);
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeIn 1s ease 0.6s forwards;
 }
 
 .huge-btn:hover {
   background: transparent;
-  color: #fff;
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  color: inherit;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+.huge-btn.on-light {
+  color: black;
+}
+
 
 .huge-btn.on-light:hover {
   color: var(--color-text);
-  border-color: var(--color-text);
+  border-color: black;
 }
 
 .huge-btn i {
@@ -2653,19 +2680,23 @@ main section {
 }
 
 .apply-btn {
+  display: inline-block;
   padding: 12px 30px;
   background: #000;
   color: #fff;
   font-weight: 700;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s;
+  letter-spacing: 0.15em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
 }
 
 .apply-btn:hover {
   background: var(--color-accent);
   color: #000;
+  transform: translateY(-2px);
 }
 
 .students-section {
