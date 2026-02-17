@@ -23,8 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hero Indicators Autocycle
   const indicators = document.querySelectorAll('.indicator-item');
+  const heroVideos = document.querySelectorAll('.hero-video');
   let currentIndicator = 0;
   let indicatorInterval;
+
+  function switchHeroSlide(index) {
+    heroVideos.forEach((vid, i) => {
+      if (i === index) {
+        vid.classList.add('active');
+        vid.play().catch(() => { });
+      } else {
+        vid.classList.remove('active');
+      }
+    });
+  }
 
   function startIndicatorCycle() {
     clearInterval(indicatorInterval);
@@ -32,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       indicators[currentIndicator].classList.remove('active');
       currentIndicator = (currentIndicator + 1) % indicators.length;
       indicators[currentIndicator].classList.add('active');
+      switchHeroSlide(currentIndicator);
     }, 6000); // Match CSS animation duration
   }
 
@@ -40,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       indicators[currentIndicator].classList.remove('active');
       currentIndicator = index;
       indicators[currentIndicator].classList.add('active');
+      switchHeroSlide(currentIndicator);
       startIndicatorCycle(); // Reset timer on manual click
     });
   });
