@@ -313,10 +313,12 @@ img {
   position: absolute;
   width: 600px;
   height: 600px;
-  opacity: 0.08;
-  /* Slightly higher since we're using white/light colors from SVG */
+  opacity: 0.05;
+  /* Soft watermark effect */
   pointer-events: none;
   z-index: 0;
+  mix-blend-mode: difference;
+  /* Makes white visible on white as a soft gray */
 }
 
 .decorative-shape.s-1 {
