@@ -305,6 +305,36 @@ img {
 .about-section {
   padding: 120px 0;
   background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.decorative-shape {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  filter: brightness(0) blur(2px);
+  /* Make black and soft */
+}
+
+.decorative-shape.s-1 {
+  top: -150px;
+  right: -150px;
+  transform: rotate(15deg);
+}
+
+.decorative-shape.s-2 {
+  bottom: -200px;
+  left: -200px;
+  transform: rotate(-25deg);
+}
+
+.decorative-shape img {
+  width: 100%;
+  height: 100%;
 }
 
 .about-grid {
@@ -312,6 +342,8 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .about-visual {
