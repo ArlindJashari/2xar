@@ -313,11 +313,10 @@ img {
   position: absolute;
   width: 600px;
   height: 600px;
-  opacity: 0.04;
+  opacity: 0.08;
+  /* Slightly higher since we're using white/light colors from SVG */
   pointer-events: none;
   z-index: 0;
-  filter: brightness(0) blur(2px);
-  /* Make black and soft */
 }
 
 .decorative-shape.s-1 {
