@@ -3069,3 +3069,819 @@ main section {
     max-width: none;
   }
 }
+
+/* ==========================================================
+   COMPREHENSIVE RESPONSIVE OVERRIDES
+   Tablet: max-width 1024px | Mobile: max-width 768px | Small: max-width 480px
+   ========================================================== */
+
+/* ── TABLET (≤1024px) ── */
+@media (max-width: 1024px) {
+
+  /* Global container */
+  .container {
+    padding: 0 40px;
+  }
+
+  /* Nav logo */
+  .brand-svg {
+    height: 50px;
+  }
+
+  /* About page grid */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+
+  .about-content {
+    padding-left: 0;
+  }
+
+  /* About stats box: 2 columns on tablet */
+  .about-stats-box {
+    grid-template-columns: repeat(2, 1fr);
+    bottom: auto;
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .about-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .about-stat:nth-child(odd):not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .about-stat:nth-child(1),
+  .about-stat:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+  }
+
+  /* Projects gallery intro */
+  .gallery-intro {
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .intro-left,
+  .intro-right {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Project detail intro grid */
+  .project-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Technical specs box */
+  .technical-specs-box {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  /* What We Do services grid: 2 cols */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  /* Values grid: 2 cols */
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Culture grid: stack */
+  .culture-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* History rows */
+  .history-row-inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .year-col {
+    margin-bottom: 0;
+  }
+
+  .content-col {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .row-image {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Operate grid: stack */
+  .operate-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+
+  /* Partners grid: 3 cols */
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* News grid: 2 cols */
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Media grid: 1 col */
+  .media-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  /* CTA section */
+  .cta-content h2 {
+    font-size: 5rem;
+  }
+
+  /* Page title */
+  .page-title {
+    font-size: 3.5rem;
+  }
+
+  /* Display title */
+  .display-title {
+    font-size: 3.5rem;
+  }
+
+  .display-title.small {
+    font-size: 2.5rem;
+  }
+
+  /* About title */
+  .about-title {
+    font-size: 2.8rem;
+  }
+
+  /* Article footer: stack on tablet */
+  .article-footer .container {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+  }
+}
+
+/* ── MOBILE (≤768px) ── */
+@media (max-width: 768px) {
+
+  /* Global */
+  .container {
+    padding: 0 20px;
+  }
+
+  /* ── NAVIGATION ── */
+  .brand-svg {
+    height: 42px;
+  }
+
+  /* ── PAGE HEADERS ── */
+  .page-header {
+    padding: 130px 0 70px;
+  }
+
+  .page-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .page-subtitle {
+    text-align: left;
+    font-size: 0.65rem;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .display-title {
+    font-size: 2.2rem;
+  }
+
+  .display-title.small {
+    font-size: 1.8rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  /* ── HOMEPAGE: ABOUT SECTION ── */
+  .about-section {
+    padding: 70px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .about-img-container {
+    aspect-ratio: 4/3;
+  }
+
+  .about-stats-box {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    padding: 20px;
+  }
+
+  .about-stat:nth-child(1),
+  .about-stat:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .about-stat:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .about-stat:nth-child(even) {
+    border-right: none;
+  }
+
+  /* ── HOMEPAGE: DARK PROJECT SECTION ── */
+  .dark-section {
+    padding: 70px 0;
+  }
+
+  .showcase-header {
+    margin-bottom: 40px;
+  }
+
+  .header-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+
+  .project-stats {
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+  }
+
+  /* Project grid: single column */
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    min-height: auto;
+  }
+
+  .project-card.featured,
+  .project-card.landscape,
+  .project-card.small {
+    height: 320px;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .project-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+  }
+
+  /* Card overlay always visible on mobile (no hover) */
+  .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-content h3 {
+    font-size: 1.3rem;
+  }
+
+  /* ── HOMEPAGE: VERTICAL ACCORDION ── */
+  .vertical-grid-container {
+    padding: 60px 0;
+  }
+
+  /* ── HOMEPAGE: PARTNERS ── */
+  .partners-section {
+    padding: 70px 0;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
+  }
+
+  .partner-item {
+    opacity: 0.5;
+  }
+
+  /* ── HOMEPAGE: NEWS SECTION ── */
+  .news-section {
+    padding: 70px 0 !important;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  /* ── ABOUT PAGE ── */
+  .history-section {
+    padding: 70px 0;
+  }
+
+  .history-header {
+    margin-bottom: 50px;
+  }
+
+  .history-row {
+    padding: 40px 0;
+  }
+
+  .history-row-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .year-col {
+    margin-bottom: 0;
+  }
+
+  .big-year {
+    font-size: 3rem;
+  }
+
+  .content-col {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .row-image {
+    width: 100%;
+    flex: none;
+    aspect-ratio: 16/9;
+  }
+
+  .row-title {
+    font-size: 1.2rem;
+  }
+
+  /* Operate section */
+  .operate-section {
+    padding: 60px 0 !important;
+  }
+
+  .operate-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+  }
+
+  /* Innovation section */
+  .innovation-section {
+    padding: 60px 0 !important;
+  }
+
+  /* Sustainability section */
+  .sust-section {
+    padding: 60px 0 !important;
+  }
+
+  /* Values section */
+  .values-section {
+    padding: 70px 0;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  /* Leadership section */
+  .leadership-section {
+    padding: 70px 0;
+  }
+
+  .leadership-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    margin-top: 40px;
+  }
+
+  /* Partners section on about page */
+  .partners-header {
+    margin-bottom: 40px;
+  }
+
+  /* ── PROJECTS PAGE ── */
+  .projects-gallery-section {
+    padding: 60px 0;
+  }
+
+  .gallery-intro {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .intro-left,
+  .intro-right {
+    flex: none;
+    width: 100%;
+  }
+
+  .intro-right p {
+    font-size: 1rem;
+  }
+
+  /* ── PROJECT DETAIL PAGE ── */
+  .project-intro-section {
+    padding: 60px 0;
+  }
+
+  .project-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .lead-text {
+    font-size: 1.2rem;
+  }
+
+  .technical-specs-box {
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+  }
+
+  .spec-val {
+    font-size: 2rem;
+  }
+
+  .gallery-full-img {
+    height: 280px;
+    margin-bottom: 15px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .gallery-item {
+    height: 280px;
+  }
+
+  .next-project-section {
+    padding: 80px 0;
+  }
+
+  /* ── WHAT WE DO PAGE ── */
+  .capabilities-intro {
+    padding: 60px 0 40px;
+  }
+
+  .services-grid-section {
+    padding-bottom: 70px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .service-image {
+    height: 220px;
+  }
+
+  /* Sectors section */
+  .sectors-section {
+    padding: 60px 0 !important;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    padding: 100px 0;
+  }
+
+  .cta-content h2 {
+    font-size: 2.8rem;
+    line-height: 1;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+  }
+
+  .huge-btn {
+    padding: 15px 30px;
+    font-size: 0.75rem;
+  }
+
+  /* ── NEWS PAGE ── */
+  .news-section {
+    padding: 60px 0 !important;
+  }
+
+  .media-kit-section {
+    padding: 70px 0;
+  }
+
+  .media-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  /* ── NEWS DETAIL PAGE ── */
+  .article-hero {
+    padding-top: 130px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .article-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .article-featured-img {
+    height: 250px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .article-content {
+    font-size: 1rem !important;
+  }
+
+  .article-quote {
+    font-size: 1.2rem !important;
+    padding-left: 20px !important;
+    margin: 40px 0 !important;
+  }
+
+  .article-footer .container {
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+  }
+
+  .share-links {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  /* ── CAREERS PAGE ── */
+  .careers-hero {
+    padding: 130px 0 70px;
+  }
+
+  .culture-section {
+    padding: 70px 0;
+  }
+
+  .culture-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .jobs-section {
+    padding: 70px 0;
+  }
+
+  .jobs-filters {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px 20px;
+  }
+
+  .job-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .job-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .details-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .students-section {
+    padding: 70px 0;
+  }
+
+  /* ── CONTACT PAGE ── */
+  .contact-split-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-info-side {
+    flex: none;
+    padding: 80px 25px 50px;
+  }
+
+  .contact-form-side {
+    padding: 50px 25px 70px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 70px 0 40px;
+  }
+
+  .footer-content {
+    gap: 20px;
+  }
+
+  .footer-logo {
+    height: 45px;
+    margin-bottom: 15px;
+  }
+
+  .footer-info {
+    font-size: 0.85rem;
+  }
+
+  /* ── MOSAIC GRID (About Projects) ── */
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 300px;
+  }
+
+  .featured-large,
+  .wide,
+  .tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* ── SMALL MOBILE (≤480px) ── */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .brand-svg {
+    height: 36px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .display-title {
+    font-size: 1.8rem;
+  }
+
+  .display-title.small {
+    font-size: 1.5rem;
+  }
+
+  .about-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .hero-cta-btn {
+    padding: 14px;
+    font-size: 0.75rem;
+  }
+
+  /* Stats: single column */
+  .about-stats-box {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stat:nth-child(odd) {
+    border-right: none;
+  }
+
+  .about-stat:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .project-card.featured,
+  .project-card.landscape,
+  .project-card.small {
+    height: 260px;
+  }
+
+  .gallery-full-img {
+    height: 220px;
+  }
+
+  .gallery-item {
+    height: 220px;
+  }
+
+  .service-image {
+    height: 180px;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-title {
+    font-size: 1.7rem !important;
+  }
+
+  .modal-job-title {
+    font-size: 1.5rem;
+  }
+
+  .job-modal-content {
+    padding: 30px 16px;
+  }
+
+  .technical-specs-box {
+    padding: 20px;
+  }
+
+  .spec-val {
+    font-size: 1.8rem;
+  }
+
+  .huge-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  /* Contact */
+  .contact-info-side,
+  .contact-form-side {
+    padding: 60px 16px 40px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 50px 0 30px;
+  }
+}
