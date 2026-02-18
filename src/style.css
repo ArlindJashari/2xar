@@ -2860,17 +2860,20 @@ main section {
 
 @media (max-width: 768px) {
   .job-modal-content {
-    padding: 40px 20px;
+    padding: 30px 20px;
+    max-height: 85vh;
+    overflow-y: auto;
   }
 
   .modal-job-title {
     font-size: 1.8rem;
+    padding-right: 30px;
+    /* Space for close button */
   }
 
   .copy-email-box {
     flex-direction: column;
     gap: 20px;
-    text-align: center;
   }
 }
 
@@ -3962,7 +3965,8 @@ main section {
   }
 
   .job-modal-content {
-    padding: 30px 16px;
+    padding: 25px 16px;
+    max-height: 90vh;
   }
 
   .technical-specs-box {
