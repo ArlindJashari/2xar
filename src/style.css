@@ -2049,7 +2049,7 @@ main section {
 
 /* Ensure Logo/Links in Overlay match styles */
 .mobile-menu-overlay .brand-logo img {
-  height: 40px;
+  height: 55px;
 }
 
 .mobile-menu-overlay {
@@ -2119,7 +2119,7 @@ main section {
   }
 
   .mobile-nav-links a {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: white;
     text-transform: uppercase;
