@@ -305,37 +305,6 @@ img {
 .about-section {
   padding: 120px 0;
   background: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-.decorative-shape {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  opacity: 0.05;
-  /* Soft watermark effect */
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: difference;
-  /* Makes white visible on white as a soft gray */
-}
-
-.decorative-shape.s-1 {
-  top: -150px;
-  right: -150px;
-  transform: rotate(15deg);
-}
-
-.decorative-shape.s-2 {
-  bottom: -200px;
-  left: -200px;
-  transform: rotate(-25deg);
-}
-
-.decorative-shape img {
-  width: 100%;
-  height: 100%;
 }
 
 .about-grid {
@@ -343,8 +312,6 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
-  position: relative;
-  z-index: 1;
 }
 
 .about-visual {
@@ -2719,7 +2686,7 @@ main section {
   gap: 6px;
 }
 
-.apply-btn {
+.details-btn {
   display: inline-block;
   padding: 12px 30px;
   background: #000;
@@ -2733,10 +2700,150 @@ main section {
   cursor: pointer;
 }
 
-.apply-btn:hover {
+.details-btn:hover {
   background: var(--color-accent);
   color: #000;
   transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.job-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  padding: 20px;
+}
+
+.job-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.job-modal-content {
+  background: #fff;
+  width: 100%;
+  max-width: 700px;
+  padding: 60px;
+  position: relative;
+  transform: translateY(30px);
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.job-modal.active .job-modal-content {
+  transform: translateY(0);
+}
+
+.close-modal {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-modal:hover {
+  transform: rotate(90deg);
+  color: var(--color-accent);
+}
+
+.modal-job-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.modal-job-meta {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.job-description-content {
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.job-description-content h4 {
+  color: #000;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.copy-email-box {
+  background: #f9f9f9;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px dashed #ddd;
+}
+
+.email-wrap label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.email-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.copy-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.copy-btn:hover {
+  background: var(--color-accent);
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .job-modal-content {
+    padding: 40px 20px;
+  }
+
+  .modal-job-title {
+    font-size: 1.8rem;
+  }
+
+  .copy-email-box {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
 }
 
 .students-section {

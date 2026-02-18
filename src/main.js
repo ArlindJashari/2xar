@@ -102,4 +102,103 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Job Modal Logic
+  const jobModal = document.getElementById('jobModal');
+  const detailsBtns = document.querySelectorAll('.details-btn');
+  const closeModalBtn = document.querySelector('.close-modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalLocation = document.getElementById('modalLocation');
+  const modalDescription = document.getElementById('modalDescription');
+  const copyEmailBtn = document.getElementById('copyEmail');
+
+  const jobDetails = {
+    'senior-civil': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>We are seeking a highly experienced Senior Civil Engineer to lead complex infrastructure projects across the Western Balkans. You will be responsible for technical design oversight, project management, and ensuring the highest engineering standards.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Lead design and execution of large-scale civil works.</li>
+            <li>Coordinate with international partners and local stakeholders.</li>
+            <li>Ensure compliance with Eurocode and local regulations.</li>
+            <li>Mentor junior engineering staff.</li>
+        </ul>
+      `
+    },
+    'site-manager': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>Seeking an experienced Site Manager for major road and highway infrastructure projects. You will oversee daily operations, manage sub-contractors, and ensure timeline and budget adherence under strict quality controls.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Daily site supervision and resource management.</li>
+            <li>Directing logistics and materials procurement.</li>
+            <li>Reporting on project progress and safety metrics.</li>
+            <li>Maintaining liaison with client representatives.</li>
+        </ul>
+      `
+    },
+    'hse-officer': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>Join our team as an HSE Officer to maintain our zero-incident safety record. You will implement and monitor safety procedures across active construction sites, ensuring the protection of all personnel and environment.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Regular site safety inspections and audits.</li>
+            <li>HSE training and onboarding for new personnel.</li>
+            <li>Emergency response coordination.</li>
+            <li>Ensuring full compliance with international safety protocols.</li>
+        </ul>
+      `
+    }
+  };
+
+  if (jobModal && detailsBtns.length > 0) {
+    detailsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const jobId = btn.getAttribute('data-job');
+        const title = btn.getAttribute('data-title');
+        const location = btn.getAttribute('data-location');
+        const details = jobDetails[jobId];
+
+        if (details) {
+          modalTitle.textContent = title;
+          modalLocation.innerHTML = `<i class="ph ph-map-pin"></i> ${location}`;
+          modalDescription.innerHTML = details.content;
+          jobModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      jobModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    jobModal.addEventListener('click', (e) => {
+      if (e.target === jobModal) {
+        jobModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Copy Email Feature
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', () => {
+      const email = document.querySelector('.email-value').textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        const originalText = copyEmailBtn.textContent;
+        copyEmailBtn.textContent = 'Copied!';
+        copyEmailBtn.classList.add('active');
+
+        setTimeout(() => {
+          copyEmailBtn.textContent = originalText;
+          copyEmailBtn.classList.remove('active');
+        }, 2000);
+      });
+    });
+  }
+
 });

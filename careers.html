@@ -104,7 +104,8 @@
                                 <span><i class="ph ph-map-pin"></i> Prishtina, Kosovo</span>
                             </div>
                         </div>
-                        <a href="#" class="apply-btn">Apply Now</a>
+                        <button class="details-btn" data-job="senior-civil" data-title="Senior Civil Engineer"
+                            data-location="Prishtina, Kosovo">More Details</button>
                     </div>
 
                     <div class="job-card">
@@ -114,7 +115,9 @@
                                 <span><i class="ph ph-map-pin"></i> Tirana, Albania</span>
                             </div>
                         </div>
-                        <a href="#" class="apply-btn">Apply Now</a>
+                        <button class="details-btn" data-job="site-manager"
+                            data-title="Site Manager - Road Infrastructure" data-location="Tirana, Albania">More
+                            Details</button>
                     </div>
 
                     <div class="job-card">
@@ -124,7 +127,8 @@
                                 <span><i class="ph ph-map-pin"></i> Skopje, Macedonia</span>
                             </div>
                         </div>
-                        <a href="#" class="apply-btn">Apply Now</a>
+                        <button class="details-btn" data-job="hse-officer" data-title="HSE Officer"
+                            data-location="Skopje, Macedonia">More Details</button>
                     </div>
                 </div>
             </div>
@@ -168,6 +172,29 @@
             </div>
         </section>
     </main>
+
+    <div class="job-modal" id="jobModal">
+        <div class="job-modal-content">
+            <button class="close-modal"><i class="ph ph-x"></i></button>
+            <div class="modal-body">
+                <h2 class="modal-job-title" id="modalTitle">Senior Civil Engineer</h2>
+                <div class="modal-job-meta">
+                    <span id="modalLocation"><i class="ph ph-map-pin"></i> Prishtina, Kosovo</span>
+                    <span><i class="ph ph-clock"></i> Full Time</span>
+                </div>
+                <div class="job-description-content" id="modalDescription">
+                    <!-- Content injected via JS -->
+                </div>
+                <div class="copy-email-box">
+                    <div class="email-wrap">
+                        <label>Contact for Applications</label>
+                        <span class="email-value">hr@2xar.com</span>
+                    </div>
+                    <button class="copy-btn" id="copyEmail">Copy Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container footer-content">
