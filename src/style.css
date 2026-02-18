@@ -58,6 +58,16 @@ img {
   font-weight: 500;
 }
 
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  content: "";
+}
+
 /* Top Bar */
 .top-bar {
   position: absolute;
@@ -2881,6 +2891,7 @@ main section {
   background: #fff;
   border: 1px solid #eee;
   transition: all 0.3s;
+  position: relative;
 }
 
 .news-card:hover {
@@ -4064,6 +4075,7 @@ main section {
     padding: 60px 16px 40px;
   }
 }
+
 /* ==========================================================
    ABOUT PAGE COMPONENTS REFINEMENTS
    ========================================================== */
@@ -4108,14 +4120,16 @@ main section {
 }
 
 /* Innovation & Sustainability Grids */
-.innovation-grid, .sust-grid {
+.innovation-grid,
+.sust-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-top: 50px;
 }
 
-.inn-card, .sust-card {
+.inn-card,
+.sust-card {
   background: #fff;
   padding: 40px;
   border-radius: 8px;
@@ -4123,13 +4137,15 @@ main section {
   transition: all 0.3s ease;
 }
 
-.inn-card:hover, .sust-card:hover {
+.inn-card:hover,
+.sust-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border-color: var(--color-accent);
 }
 
-.inn-card h3, .sust-card h3 {
+.inn-card h3,
+.sust-card h3 {
   font-size: 1.25rem;
   margin-bottom: 15px;
   color: #000;
@@ -4167,12 +4183,17 @@ main section {
 
 /* Extra Tablet/Mobile Overrides for About Page */
 @media (max-width: 1024px) {
-  .innovation-grid, .sust-grid, .testimonials-grid {
+
+  .innovation-grid,
+  .sust-grid,
+  .testimonials-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
-  .inn-card, .sust-card, .testimonial-card {
+
+  .inn-card,
+  .sust-card,
+  .testimonial-card {
     padding: 30px;
   }
 
