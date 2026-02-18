@@ -2286,6 +2286,19 @@ main section {
     padding: 120px 0 80px;
   }
 
+  /* Projects Page gallery intro fix */
+  .gallery-intro {
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .intro-left,
+  .intro-right {
+    flex: none;
+    width: 100%;
+  }
+
   /* History Section adjustments */
   .history-row {
     padding: 40px 0;
@@ -2293,6 +2306,11 @@ main section {
 
   .big-year {
     font-size: 3rem;
+  }
+
+  .project-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
 
