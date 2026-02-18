@@ -3885,3 +3885,88 @@ main section {
     padding: 50px 0 30px;
   }
 }
+
+/* ==========================================================
+   SUPPLIER GRID & CONTACT PAGE FIXES
+   ========================================================== */
+
+/* Supplier Grid — base (desktop) */
+.supplier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* Contact split wrapper: remove full-height on mobile */
+@media (max-width: 900px) {
+  .contact-split-wrapper {
+    min-height: auto;
+  }
+
+  .contact-form-side h2 {
+    font-size: 2rem !important;
+    margin-bottom: 25px !important;
+  }
+}
+
+/* Supplier grid: stack on tablet */
+@media (max-width: 768px) {
+  .supplier-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .supplier-section {
+    padding: 60px 0 !important;
+  }
+
+  .supplier-section .partners-header {
+    margin-bottom: 30px;
+  }
+
+  .supplier-section h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .supplier-form form {
+    padding: 20px !important;
+  }
+
+  /* Contact form heading */
+  .contact-form-side h2 {
+    font-size: 1.8rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Contact info side: reduce padding */
+  .contact-info-side {
+    padding: 80px 25px 50px;
+  }
+
+  .contact-form-side {
+    padding: 50px 25px 70px;
+  }
+
+  /* Btn-large: full width on mobile */
+  .btn-large {
+    width: 100%;
+    text-align: center;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .supplier-grid {
+    gap: 30px;
+  }
+
+  .supplier-form form {
+    padding: 16px !important;
+  }
+
+  .contact-info-side,
+  .contact-form-side {
+    padding: 60px 16px 40px;
+  }
+}
