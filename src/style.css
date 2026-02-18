@@ -4212,3 +4212,45 @@ main section {
     gap: 40px;
   }
 }
+
+/* Quick Registration Form Styling */
+.supplier-reg-form {
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.supplier-reg-form .styled-input,
+.supplier-reg-form .styled-select {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 14px 15px;
+  font-size: 1rem;
+  /* Prevent zoom on mobile */
+  height: auto;
+  min-height: 50px;
+  /* Ensure tap target size */
+}
+
+.supplier-reg-form .styled-input:focus,
+.supplier-reg-form .styled-select:focus {
+  border-color: var(--color-accent);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(205, 175, 100, 0.1);
+  outline: none;
+}
+
+.supplier-reg-form button {
+  width: 100%;
+  padding: 16px;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
