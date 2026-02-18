@@ -1628,7 +1628,7 @@ main section {
 
 .primary-btn:hover {
   background: transparent;
-  color: inherit;
+  color: white;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
@@ -2576,7 +2576,7 @@ main section {
 
 .huge-btn:hover {
   background: transparent;
-  color: inherit;
+  color: white;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
