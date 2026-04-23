@@ -112,42 +112,174 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyEmailBtn = document.getElementById('copyEmail');
 
   const jobDetails = {
-    'senior-civil': {
+    'project-manager': {
       content: `
         <h4>Role Overview</h4>
-        <p>We are seeking a highly experienced Senior Civil Engineer to lead complex infrastructure projects across the Western Balkans. You will be responsible for technical design oversight, project management, and ensuring the highest engineering standards.</p>
+        <p>We are seeking an experienced Project Manager to lead the delivery of complex infrastructure and construction projects across Southeast Europe, ensuring execution aligned with technical, contractual, and financial objectives.</p>
         <h4>Key Responsibilities</h4>
         <ul>
-            <li>Lead design and execution of large-scale civil works.</li>
-            <li>Coordinate with international partners and local stakeholders.</li>
-            <li>Ensure compliance with Eurocode and local regulations.</li>
-            <li>Mentor junior engineering staff.</li>
+            <li>Manage full project lifecycle from planning to delivery</li>
+            <li>Control budgets, timelines, and resources</li>
+            <li>Coordinate multidisciplinary teams and stakeholders</li>
+            <li>Ensure compliance with contracts, standards, and regulations</li>
+            <li>Report on progress, risks, and performance</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>8–15+ years in construction or infrastructure projects</li>
+            <li>Proven experience managing projects €10M–€50M+</li>
+            <li>Experience with EU/IFI-funded projects is highly preferred</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Civil Engineering or related field</li>
+            <li>PMP, FIDIC, or equivalent certification (preferred)</li>
+            <li>Strong knowledge of project management tools and contracts</li>
         </ul>
       `
     },
-    'site-manager': {
+    'site-engineer': {
       content: `
         <h4>Role Overview</h4>
-        <p>Seeking an experienced Site Manager for major road and highway infrastructure projects. You will oversee daily operations, manage sub-contractors, and ensure timeline and budget adherence under strict quality controls.</p>
+        <p>We are seeking a Site Engineer to support on-site execution and ensure all works are delivered according to design, quality standards, and timelines.</p>
         <h4>Key Responsibilities</h4>
         <ul>
-            <li>Daily site supervision and resource management.</li>
-            <li>Directing logistics and materials procurement.</li>
-            <li>Reporting on project progress and safety metrics.</li>
-            <li>Maintaining liaison with client representatives.</li>
+            <li>Supervise construction works and site activities</li>
+            <li>Ensure alignment with technical drawings and specifications</li>
+            <li>Coordinate subcontractors and suppliers</li>
+            <li>Monitor quality and progress</li>
+            <li>Support issue resolution on-site</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>3–8 years in construction or infrastructure projects</li>
+            <li>Experience on medium to large construction sites</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Civil Engineering</li>
+            <li>Strong knowledge of construction processes and drawings</li>
+            <li>Familiarity with site documentation and reporting</li>
         </ul>
       `
     },
-    'hse-officer': {
+    'surveyor-engineer': {
       content: `
         <h4>Role Overview</h4>
-        <p>Join our team as an HSE Officer to maintain our zero-incident safety record. You will implement and monitor safety procedures across active construction sites, ensuring the protection of all personnel and environment.</p>
+        <p>We are seeking a Surveyor Engineer to ensure precision in measurement, alignment, and positioning across all project phases.</p>
         <h4>Key Responsibilities</h4>
         <ul>
-            <li>Regular site safety inspections and audits.</li>
-            <li>HSE training and onboarding for new personnel.</li>
-            <li>Emergency response coordination.</li>
-            <li>Ensuring full compliance with international safety protocols.</li>
+            <li>Perform topographic and construction surveys</li>
+            <li>Set out works and verify alignment</li>
+            <li>Prepare survey reports and documentation</li>
+            <li>Use GPS, total stations, and modern surveying tools</li>
+            <li>Monitor deviations and ensure accuracy</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>3–7 years in construction surveying</li>
+            <li>Experience in infrastructure projects preferred</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree or certification in Surveying or Geodesy</li>
+            <li>Proficiency with surveying equipment and software</li>
+        </ul>
+      `
+    },
+    'cost-engineer': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>We are seeking a Cost Engineer to manage budgeting, cost control, and financial performance of projects.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Prepare cost estimates and budgets</li>
+            <li>Monitor project costs and financial performance</li>
+            <li>Manage variations, claims, and valuations</li>
+            <li>Support tender pricing</li>
+            <li>Ensure cost efficiency</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>5–10 years in cost control or quantity surveying</li>
+            <li>Experience with infrastructure or civil projects</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Civil Engineering, Construction Management, or Finance</li>
+            <li>Strong Excel and cost management tools skills</li>
+        </ul>
+      `
+    },
+    'electrical-engineer': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>We are seeking an Electrical Engineer to design and oversee electrical systems in infrastructure and energy projects.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Design and supervise electrical systems</li>
+            <li>Ensure compliance with standards</li>
+            <li>Oversee installation and commissioning</li>
+            <li>Coordinate with project teams</li>
+            <li>Troubleshoot and optimize systems</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>5–10 years in electrical engineering projects</li>
+            <li>Experience in infrastructure or energy sector preferred</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Electrical Engineering</li>
+            <li>Knowledge of EU standards and power systems</li>
+        </ul>
+      `
+    },
+    'mechanical-engineer': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>We are seeking a Mechanical Engineer to support design and execution of mechanical systems in infrastructure and environmental projects.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Design and oversee mechanical systems</li>
+            <li>Supervise installation and commissioning</li>
+            <li>Ensure compliance with standards</li>
+            <li>Support system optimization</li>
+            <li>Prepare technical documentation</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>5–10 years in mechanical engineering</li>
+            <li>Experience in water, wastewater, or industrial systems preferred</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Mechanical Engineering</li>
+            <li>Knowledge of pumps, pipelines, and treatment systems</li>
+        </ul>
+      `
+    },
+    'environmental-expert': {
+      content: `
+        <h4>Role Overview</h4>
+        <p>We are seeking an Environmental Expert to ensure projects meet environmental standards and sustainability requirements.</p>
+        <h4>Key Responsibilities</h4>
+        <ul>
+            <li>Conduct environmental impact assessments</li>
+            <li>Ensure compliance with EU and local regulations</li>
+            <li>Develop environmental management plans</li>
+            <li>Monitor environmental performance</li>
+            <li>Liaise with authorities and stakeholders</li>
+        </ul>
+        <h4>Required Experience</h4>
+        <ul>
+            <li>5–10 years in environmental engineering or consulting</li>
+            <li>Experience with EU-funded projects highly preferred</li>
+        </ul>
+        <h4>Qualifications</h4>
+        <ul>
+            <li>Degree in Environmental Engineering or related field</li>
+            <li>Knowledge of EU environmental directives</li>
         </ul>
       `
     }
