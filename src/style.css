@@ -2757,12 +2757,13 @@ main section {
   backdrop-filter: blur(5px);
   z-index: 2000;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Ensure long content starts from top */
   justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
-  padding: 20px;
+  padding: 60px 20px; /* Vertical padding for breathing room */
+  overflow-y: auto; /* Enable scrolling for long content */
 }
 
 .job-modal.active {
@@ -2778,6 +2779,7 @@ main section {
   position: relative;
   transform: translateY(30px);
   transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  margin: auto; /* Center when content is smaller than viewport */
 }
 
 .job-modal.active .job-modal-content {
@@ -2826,8 +2828,20 @@ main section {
 
 .job-description-content h4 {
   color: #000;
+  margin-top: 25px;
   margin-bottom: 15px;
   font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.job-description-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+.job-description-content li {
+  margin-bottom: 8px;
 }
 
 .copy-email-box {
@@ -2875,7 +2889,7 @@ main section {
 
 @media (max-width: 768px) {
   .job-modal-content {
-    padding: 30px 20px;
+    padding: 40px 24px;
     max-height: 85vh;
     overflow-y: auto;
   }
@@ -3980,7 +3994,7 @@ main section {
   }
 
   .job-modal-content {
-    padding: 25px 16px;
+    padding: 30px 20px;
     max-height: 90vh;
   }
 
