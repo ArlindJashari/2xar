@@ -137,6 +137,42 @@ const jobDetails = {
       <h4>Role Overview</h4>
       <p>We are seeking an experienced Project Manager to lead the delivery of complex infrastructure and construction projects across Southeast Europe.</p>
     `
+  },
+  'site-engineer': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>We are looking for a dedicated Site Engineer to oversee daily operations on our construction sites, ensuring structural integrity, quality control, and adherence to design specifications.</p>
+    `
+  },
+  'surveyor-engineer': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>Join our team as a Surveyor Engineer to manage site measurements, establish precise boundaries, and provide accurate topographical data essential for large-scale infrastructure projects.</p>
+    `
+  },
+  'cost-engineer': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>We are seeking a detail-oriented Cost Engineer to manage project budgets, conduct cost analyses, and ensure optimal financial performance throughout the project lifecycle.</p>
+    `
+  },
+  'electrical-engineer': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>An exciting opportunity for an Electrical Engineer to design, implement, and oversee the electrical systems and networks critical to our modern infrastructure developments.</p>
+    `
+  },
+  'mechanical-engineer': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>We are looking for a Mechanical Engineer responsible for the design, integration, and maintenance of complex mechanical systems in our industrial and civil engineering projects.</p>
+    `
+  },
+  'environmental-expert': {
+    content: `
+      <h4>Role Overview</h4>
+      <p>Join us as an Environmental Expert to guide our projects toward sustainable practices, ensuring regulatory compliance and minimizing environmental impact across all operations.</p>
+    `
   }
 };
 

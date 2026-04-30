@@ -106,9 +106,13 @@ const sectionTitles = {
   dashboard: 'Dashboard',
   news: 'News & Insights',
   projects: 'Projects',
+  services: 'Services & Sectors',
   careers: 'Careers',
   partners: 'Partners',
   hero_slides: 'Hero Slides',
+  timeline: 'Timeline',
+  team: 'Leadership Team',
+  company_values: 'Company Values',
   settings: 'Site Settings',
 };
 
@@ -172,7 +176,8 @@ const crudConfig = {
       { key: 'category', label: 'Category', type: 'select', options: ['Announcement', 'Infrastructure', 'Environmental', 'Water & Environment', 'Press Release'] },
       { key: 'date', label: 'Date', type: 'date' },
       { key: 'location', label: 'Location', type: 'text' },
-      { key: 'image', label: 'Image', type: 'image' },
+      { key: 'image', label: 'Main Image', type: 'image' },
+      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery' },
       { key: 'excerpt', label: 'Excerpt', type: 'textarea' },
       { key: 'content', label: 'Full Content (HTML)', type: 'textarea' },
       { key: 'is_published', label: 'Published', type: 'checkbox' },
@@ -189,9 +194,16 @@ const crudConfig = {
       { key: 'location', label: 'Location', type: 'text' },
       { key: 'country', label: 'Country', type: 'select', options: ['', 'kosovo', 'albania', 'macedonia', 'montenegro', 'bosnia', 'serbia'] },
       { key: 'project_type', label: 'Project Type', type: 'select', options: ['', 'design-build', 'epc', 'construction-management', 'turnkey'] },
+      { key: 'status', label: 'Status (e.g. Completed 2023)', type: 'text' },
+      { key: 'scale', label: 'Scale (e.g. 800m Span)', type: 'text' },
+      { key: 'client', label: 'Client', type: 'text' },
+      { key: 'spec_steel', label: 'Spec: Steel Tons', type: 'text' },
+      { key: 'spec_concrete', label: 'Spec: Concrete m³', type: 'text' },
+      { key: 'spec_incidents', label: 'Spec: Safety Incidents', type: 'text' },
       { key: 'card_size', label: 'Card Size', type: 'select', options: ['small', 'featured', 'landscape'] },
       { key: 'value', label: 'Project Value', type: 'text' },
-      { key: 'image', label: 'Image', type: 'image' },
+      { key: 'image', label: 'Main Image', type: 'image' },
+      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery' },
       { key: 'description', label: 'Short Description', type: 'textarea' },
       { key: 'full_content', label: 'Full Content (HTML)', type: 'textarea' },
       { key: 'is_published', label: 'Published', type: 'checkbox' },
@@ -238,6 +250,51 @@ const crudConfig = {
       { key: 'sort_order', label: 'Sort Order', type: 'number' },
     ]
   },
+  services: {
+    columns: ['image', 'title', 'category', 'is_published'],
+    fields: [
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'category', label: 'Category', type: 'select', options: ['Service', 'Sector'] },
+      { key: 'icon', label: 'Phosphor Icon Class (e.g. buildings)', type: 'text' },
+      { key: 'image', label: 'Background Image', type: 'image' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'list_items', label: 'Bullet Points (One per line)', type: 'json_array' },
+      { key: 'is_published', label: 'Published', type: 'checkbox' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+    ]
+  },
+  timeline: {
+    columns: ['year', 'title', 'is_published'],
+    fields: [
+      { key: 'year', label: 'Year', type: 'text', required: true },
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'image', label: 'Image', type: 'image' },
+      { key: 'is_published', label: 'Published', type: 'checkbox' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+    ]
+  },
+  team: {
+    columns: ['image', 'name', 'role', 'is_published'],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'role', label: 'Role', type: 'text' },
+      { key: 'image', label: 'Photo', type: 'image' },
+      { key: 'bio', label: 'Biography', type: 'textarea' },
+      { key: 'is_published', label: 'Published', type: 'checkbox' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+    ]
+  },
+  company_values: {
+    columns: ['icon', 'title', 'is_published'],
+    fields: [
+      { key: 'title', label: 'Value Title', type: 'text', required: true },
+      { key: 'icon', label: 'Phosphor Icon Class (e.g. star)', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'is_published', label: 'Published', type: 'checkbox' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+    ]
+  },
 };
 
 // ── Slug Generator ───────────────────────────────────────
@@ -278,7 +335,7 @@ function renderTable(items, config, section) {
   if (items.length === 0) {
     return `<div class="empty-state"><i class="ph ph-folder-open"></i><p>No items found. Create your first one!</p></div>`;
   }
-  const colLabels = { image: 'Image', logo: 'Logo', title: 'Title', name: 'Name', category: 'Category', date: 'Date', location: 'Location', department: 'Dept.', subtitle: 'Subtitle', is_published: 'Status' };
+  const colLabels = { image: 'Image', logo: 'Logo', title: 'Title', name: 'Name', category: 'Category', date: 'Date', location: 'Location', department: 'Dept.', subtitle: 'Subtitle', role: 'Role', year: 'Year', icon: 'Icon', is_published: 'Status' };
   return `<div class="table-wrapper"><table class="data-table">
     <thead><tr>${config.columns.map(c => `<th>${colLabels[c] || c}</th>`).join('')}<th>Actions</th></tr></thead>
     <tbody>${items.map(item => `<tr data-id="${item.id}">
@@ -384,6 +441,65 @@ function renderEditor(section, data) {
     });
   });
 
+  // Multi-image gallery upload handlers
+  editorView.querySelectorAll('input[type=file][data-gallery-field]').forEach(input => {
+    const fieldKey = input.dataset.galleryField;
+    const hiddenInput = editorView.querySelector(`[name="${fieldKey}"]`);
+    const grid = document.getElementById(`gallery-grid-${fieldKey}`);
+    
+    const renderGrid = () => {
+      let urls = [];
+      try { urls = JSON.parse(hiddenInput.value || '[]'); } catch(e){}
+      grid.innerHTML = urls.map((url, i) => `
+        <div style="position:relative;width:100px;height:100px;border-radius:4px;overflow:hidden;border:1px solid var(--border);">
+          <img src="${url}" style="width:100%;height:100%;object-fit:cover;">
+          <button type="button" class="btn-icon" style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.5);color:white;padding:0;width:20px;height:20px;min-width:auto;display:flex;align-items:center;justify-content:center;" onclick="window.removeGalleryImage('${fieldKey}', ${i})"><i class="ph ph-x" style="font-size:12px;"></i></button>
+        </div>
+      `).join('');
+    };
+    
+    window.removeGalleryImage = (key, index) => {
+      const hi = document.querySelector(`[name="${key}"]`);
+      if (!hi) return;
+      let urls = JSON.parse(hi.value || '[]');
+      urls.splice(index, 1);
+      hi.value = JSON.stringify(urls);
+      document.getElementById(`gallery-grid-${key}`).innerHTML = urls.map((url, i) => `
+        <div style="position:relative;width:100px;height:100px;border-radius:4px;overflow:hidden;border:1px solid var(--border);">
+          <img src="${url}" style="width:100%;height:100%;object-fit:cover;">
+          <button type="button" class="btn-icon" style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.5);color:white;padding:0;width:20px;height:20px;min-width:auto;display:flex;align-items:center;justify-content:center;" onclick="window.removeGalleryImage('${key}', ${i})"><i class="ph ph-x" style="font-size:12px;"></i></button>
+        </div>
+      `).join('');
+    };
+
+    renderGrid();
+
+    const handleUpload = async (e) => {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+      const zone = e.target.closest('.image-upload-zone');
+      const originalHtml = zone.innerHTML;
+      zone.innerHTML = '<p>Uploading ' + files.length + ' file(s)...</p>';
+      
+      try {
+        let urls = JSON.parse(hiddenInput.value || '[]');
+        for (const file of files) {
+          const result = await uploadFile(file);
+          urls.push(result.url);
+        }
+        hiddenInput.value = JSON.stringify(urls);
+        renderGrid();
+      } catch(err) {
+        toast('Upload failed', 'error');
+      } finally {
+        zone.innerHTML = originalHtml;
+        zone.querySelector('input[type=file]').addEventListener('change', handleUpload);
+      }
+    };
+
+    input.addEventListener('change', handleUpload);
+  });
+
   const goBack = () => {
     editorView.style.display = 'none';
     listView.style.display = 'block';
@@ -403,6 +519,8 @@ function renderEditor(section, data) {
       if (!el) return;
       if (f.type === 'checkbox') formData[f.key] = el.checked ? 1 : 0;
       else if (f.type === 'number') formData[f.key] = parseInt(el.value) || 0;
+      else if (f.type === 'json_array') formData[f.key] = JSON.stringify(el.value.split('\\n').map(s=>s.trim()).filter(Boolean));
+      else if (f.type === 'gallery') formData[f.key] = el.value || '[]';
       else formData[f.key] = el.value;
     });
 
@@ -441,6 +559,18 @@ function renderField(field, data) {
     return `<div class="form-group"><label>${field.label}</label><select name="${field.key}">
       ${(field.options || []).map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o || '— Select —'}</option>`).join('')}
     </select></div>`;
+  }
+  if (field.type === 'gallery') {
+    return `<div class="form-group"><label>${field.label}</label>
+      <input type="hidden" name="${field.key}" value="${val ? val.replace(/"/g, '&quot;') : '[]'}">
+      <div class="gallery-preview-grid" id="gallery-grid-${field.key}" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;"></div>
+      <div class="image-upload-zone"><i class="ph ph-upload-simple"></i><p>Click or drag to upload multiple images</p><input type="file" multiple accept="image/*,video/*" data-gallery-field="${field.key}"></div>
+    </div>`;
+  }
+  if (field.type === 'json_array') {
+    let textVal = '';
+    try { textVal = JSON.parse(val || '[]').join('\\n'); } catch { textVal = val; }
+    return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${textVal}</textarea></div>`;
   }
   if (field.type === 'textarea') {
     return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${val}</textarea></div>`;

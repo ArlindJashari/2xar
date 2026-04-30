@@ -199,6 +199,10 @@ createCRUD('projects', { searchFields: ['title', 'description', 'category'] });
 createCRUD('careers', { searchFields: ['title', 'department', 'location'] });
 createCRUD('partners', { searchFields: ['name'] });
 createCRUD('hero_slides', { searchFields: ['title', 'subtitle'] });
+createCRUD('services', { searchFields: ['title', 'description', 'category'] });
+createCRUD('timeline', { searchFields: ['year', 'title', 'description'] });
+createCRUD('team', { searchFields: ['name', 'role', 'bio'] });
+createCRUD('company_values', { searchFields: ['title', 'description'] });
 
 // ── Settings Routes ─────────────────────────────────────────
 router.get('/settings', requireAuth, (req, res) => {
@@ -231,6 +235,7 @@ router.get('/public/news', (req, res) => {
   const { limit, slug } = req.query;
   if (slug) {
     const item = db.prepare('SELECT * FROM news WHERE slug = ? AND is_published = 1').get(slug);
+    if (item && item.gallery) item.gallery = JSON.parse(item.gallery);
     return res.json(item || null);
   }
   let query = 'SELECT * FROM news WHERE is_published = 1 ORDER BY sort_order ASC, date DESC';
@@ -239,7 +244,9 @@ router.get('/public/news', (req, res) => {
     query += ' LIMIT ?';
     params.push(parseInt(limit));
   }
-  res.json(db.prepare(query).all(...params));
+  const items = db.prepare(query).all(...params);
+  items.forEach(i => { if (i.gallery) i.gallery = JSON.parse(i.gallery); });
+  res.json(items);
 });
 
 router.get('/public/projects', (req, res) => {
@@ -248,17 +255,51 @@ router.get('/public/projects', (req, res) => {
   const params = [];
   if (slug) {
     const item = db.prepare('SELECT * FROM projects WHERE slug = ? AND is_published = 1').get(slug);
+    if (item && item.gallery) item.gallery = JSON.parse(item.gallery);
     return res.json(item || null);
   }
   if (category) { query += ' AND category = ?'; params.push(category); }
   if (country) { query += ' AND country = ?'; params.push(country); }
   query += ' ORDER BY sort_order ASC';
   if (limit) { query += ' LIMIT ?'; params.push(parseInt(limit)); }
-  res.json(db.prepare(query).all(...params));
+  const items = db.prepare(query).all(...params);
+  items.forEach(i => { if (i.gallery) i.gallery = JSON.parse(i.gallery); });
+  res.json(items);
 });
 
 router.get('/public/careers', (req, res) => {
   res.json(db.prepare('SELECT * FROM careers WHERE is_published = 1 ORDER BY sort_order ASC').all());
+});
+
+router.get('/public/partners', (req, res) => {
+  res.json(db.prepare('SELECT * FROM partners WHERE is_published = 1 ORDER BY sort_order ASC').all());
+});
+
+router.get('/public/hero', (req, res) => {
+  res.json(db.prepare('SELECT * FROM hero_slides WHERE is_published = 1 ORDER BY sort_order ASC').all());
+});
+
+router.get('/public/services', (req, res) => {
+  const { category } = req.query;
+  let query = 'SELECT * FROM services WHERE is_published = 1';
+  const params = [];
+  if (category) { query += ' AND category = ?'; params.push(category); }
+  query += ' ORDER BY sort_order ASC';
+  const items = db.prepare(query).all(...params);
+  items.forEach(i => { if (i.list_items) i.list_items = JSON.parse(i.list_items); });
+  res.json(items);
+});
+
+router.get('/public/timeline', (req, res) => {
+  res.json(db.prepare('SELECT * FROM timeline WHERE is_published = 1 ORDER BY sort_order ASC').all());
+});
+
+router.get('/public/team', (req, res) => {
+  res.json(db.prepare('SELECT * FROM team WHERE is_published = 1 ORDER BY sort_order ASC').all());
+});
+
+router.get('/public/values', (req, res) => {
+  res.json(db.prepare('SELECT * FROM company_values WHERE is_published = 1 ORDER BY sort_order ASC').all());
 });
 
 router.get('/public/partners', (req, res) => {
