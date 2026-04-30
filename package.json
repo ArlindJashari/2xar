@@ -5,10 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "cms": "node cms/server.js",
+    "dev:all": "node cms/server.js & vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.1.1"
   }
 }
