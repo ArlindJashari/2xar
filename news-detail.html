@@ -222,101 +222,9 @@
     </header>
 
     <main>
-        <article class="article-hero">
-            <div class="container">
-                <div class="article-meta">
-                    <span class="article-category">Strategic Project</span>
-                    <span class="article-date">March 15, 2024</span>
-                </div>
-                <h1 class="article-title">2xAR Awarded Contract for Regional Corridor VIII Expansion</h1>
-            </div>
-        </article>
-
-        <div class="container">
-            <img src="/images/hero_bridge_1770233612287.png" alt="Corridor expansion" class="article-featured-img">
-
-            <div class="article-body-wrapper">
-                <div class="article-content">
-                    <p><strong>PRISHTINA, KOSOVO</strong> — 2xAR, a regional leader in heavy infrastructure and civil
-                        engineering, is proud to announce it has been officially awarded the contract for the
-                        modernization and expansion of a critical section of the Corridor VIII highway. This €140
-                        million project represents a significant milestone in regional transport integration and
-                        infrastructure development across the Western Balkans.</p>
-
-                    <p>The contract covers the complex technical expansion of the 12-kilometer section connecting the
-                        regional hubs, including the construction of two major viaducts and a series of advanced
-                        drainage systems designed to meet the highest European sustainability standards.</p>
-
-                    <div class="article-quote">
-                        "This project is more than just asphalt and concrete. It is about connectivity and the future of
-                        economic growth in Southeast Europe. 2xAR is committed to delivering this with the precision and
-                        excellence our legacy is built upon."
-                    </div>
-
-                    <h2>Engineering for the Next Decade</h2>
-                    <p>Our technical team will implement state-of-the-art structural monitoring systems throughout the
-                        construction phase. This includes real-time telemetry markers for the viaduct foundation pours
-                        and the use of eco-certified materials designed to reduce the project's long-term environmental
-                        footprint.</p>
-
-                    <p>Construction is scheduled to begin in late Q2 2024, with over 400 specialized local engineers and
-                        site managers expected to be deployed at the height of the works.</p>
-
-                    <h2>Strengthening Strategic Alliances</h2>
-                    <p>The project will be executed in collaboration with our global industry partners, leveraging
-                        internal high-capacity machinery and the latest in digital project management (BIM) to ensure
-                        strict adherence to timelines and safety protocols.</p>
-                </div>
-            </div>
+        <div id="news-detail-container">
+            <p style="text-align:center; padding: 100px;">Loading article...</p>
         </div>
-
-        <footer class="article-footer">
-            <div class="container">
-                <div class="back-link">
-                    <a href="/news">&larr; Back to News</a>
-                </div>
-                <div class="share-links">
-                    <span class="share-label">Share Article</span>
-                    <a href="#" title="Share on LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
-                    <a href="#" title="Share on Twitter"><i class="ph ph-twitter-logo"></i></a>
-                    <a href="#" title="Copy Link"><i class="ph ph-link"></i></a>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Related News -->
-        <section class="related-news-section" style="padding: 120px 0; border-top: 1px solid #eee; margin-top: 80px;">
-            <div class="container">
-                <h2 class="about-title" style="font-size: 2.5rem; margin-bottom: 60px;">Related <span
-                        class="gold-text">Updates</span></h2>
-                <div class="news-grid" style="margin-top: 0;">
-                    <article class="news-card">
-                        <img src="/images/featured_steel_1770233640417.png" alt="News Image" class="news-card-img">
-                        <div class="news-card-content">
-                            <span class="news-date">FEBRUARY 28, 2024</span>
-                            <h3>Milestone Reached: Steel Structure for Energy Hub Completed</h3>
-                            <a href="/news-detail" class="project-link stretched-link">Read Full Article &rarr;</a>
-                        </div>
-                    </article>
-                    <article class="news-card">
-                        <img src="/images/intro_engineers_1770233626128.png" alt="News Image" class="news-card-img">
-                        <div class="news-card-content">
-                            <span class="news-date">JANUARY 12, 2024</span>
-                            <h3>2xAR to Host Regional Infrastructure Summit</h3>
-                            <a href="/news-detail" class="project-link stretched-link">Read Full Article &rarr;</a>
-                        </div>
-                    </article>
-                    <article class="news-card">
-                        <img src="/images/project_water.png" alt="News Image" class="news-card-img">
-                        <div class="news-card-content">
-                            <span class="news-date">DECEMBER 05, 2023</span>
-                            <h3>Sustainability Focus: New Water Treatment Plant</h3>
-                            <a href="/news-detail" class="project-link stretched-link">Read Full Article &rarr;</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -337,6 +245,118 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            const container = document.getElementById('news-detail-container');
+            
+            if (!slug) {
+                container.innerHTML = '<p style="text-align:center; padding: 100px;">Article not found.</p>';
+                return;
+            }
+            
+            try {
+                // Fetch the article
+                const res = await fetch(`/api/public/news?slug=${encodeURIComponent(slug)}`);
+                if (!res.ok) throw new Error('Failed to load news');
+                const article = await res.json();
+                
+                if (!article) {
+                    container.innerHTML = '<p style="text-align:center; padding: 100px;">Article not found.</p>';
+                    return;
+                }
+                
+                document.title = `${article.title} - 2XAR News`;
+
+                const dateStr = article.date ? new Date(article.date).toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                }) : '';
+
+                // Also fetch related news
+                const allRes = await fetch('/api/public/news');
+                let relatedHtml = '';
+                if (allRes.ok) {
+                    let allNews = await allRes.json();
+                    let related = allNews.filter(n => n.slug !== slug).slice(0, 3);
+                    if (related.length > 0) {
+                        relatedHtml = `
+                        <section class="related-news-section" style="padding: 120px 0; border-top: 1px solid #eee; margin-top: 80px;">
+                            <div class="container">
+                                <h2 class="about-title" style="font-size: 2.5rem; margin-bottom: 60px;">Related <span class="gold-text">Updates</span></h2>
+                                <div class="news-grid" style="margin-top: 0;">
+                                    ${related.map(r => `
+                                        <article class="news-card">
+                                            ${r.image ? `<img src="${r.image}" class="news-card-img" alt="${r.title}">` : ''}
+                                            <div class="news-card-content">
+                                                <span class="news-date">${r.date ? new Date(r.date).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'}) : ''}</span>
+                                                <h3>${r.title}</h3>
+                                                <a href="/news-detail.html?slug=${r.slug}" class="project-link stretched-link">Read Full Article &rarr;</a>
+                                            </div>
+                                        </article>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </section>`;
+                    }
+                }
+
+                // Render gallery if available
+                let galleryHtml = '';
+                if (article.gallery && article.gallery.length > 0) {
+                    galleryHtml = `
+                    <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+                        <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                            ${article.gallery.map(img => `<img src="${img}" style="width:100%; height:200px; object-fit:cover; border-radius:4px;" alt="Gallery Image">`).join('')}
+                        </div>
+                    </div>`;
+                }
+
+                container.innerHTML = `
+                    <article class="article-hero">
+                        <div class="container">
+                            <div class="article-meta">
+                                <span class="article-category">${article.location || 'News'}</span>
+                                <span class="article-date">${dateStr}</span>
+                            </div>
+                            <h1 class="article-title">${article.title}</h1>
+                        </div>
+                    </article>
+
+                    <div class="container">
+                        ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-featured-img">` : ''}
+
+                        <div class="article-body-wrapper">
+                            <div class="article-content">
+                                ${article.content || article.excerpt || ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    ${galleryHtml}
+
+                    <footer class="article-footer">
+                        <div class="container">
+                            <div class="back-link">
+                                <a href="/news">&larr; Back to News</a>
+                            </div>
+                            <div class="share-links">
+                                <span class="share-label">Share Article</span>
+                                <a href="#" title="Share on LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                                <a href="#" title="Share on Twitter"><i class="ph ph-twitter-logo"></i></a>
+                                <a href="#" title="Copy Link" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!'); return false;"><i class="ph ph-link"></i></a>
+                            </div>
+                        </div>
+                    </footer>
+
+                    ${relatedHtml}
+                `;
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p style="text-align:center; padding: 100px;">Error loading article.</p>';
+            }
+        });
+    </script>
 </body>
 
 </html>

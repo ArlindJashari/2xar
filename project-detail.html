@@ -60,114 +60,10 @@
     </header>
 
     <main>
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="page-header-inner">
-                    <h1 class="page-title">North Macedonia welcomes new highway</h1>
-                    <div class="page-subtitle">Project #001 <br> Infrastructure | Transport Hub</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Project Hero/Intro -->
-        <section class="project-intro-section">
-            <div class="container">
-                <div class="project-intro-grid">
-                    <div class="project-meta-col">
-                        <div class="meta-item">
-                            <div class="meta-icon-row">
-                                <i class="ph-fill ph-map-pin"></i>
-                                <span class="gold-label">Location</span>
-                            </div>
-                            <p>North Macedonia / Albania Border</p>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-icon-row">
-                                <i class="ph-fill ph-calendar-check"></i>
-                                <span class="gold-label">Status</span>
-                            </div>
-                            <p>Completed 2023</p>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-icon-row">
-                                <i class="ph-fill ph-ruler"></i>
-                                <span class="gold-label">Scale</span>
-                            </div>
-                            <p>800m Span | 120m Height</p>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-icon-row">
-                                <i class="ph-fill ph-briefcase"></i>
-                                <span class="gold-label">Client</span>
-                            </div>
-                            <p>Regional Transport Authority</p>
-                        </div>
-                    </div>
-                    <div class="project-description-col">
-                        <h2 class="display-title small">Engineering a Regional Connection</h2>
-                        <p class="lead-text">A masterpiece of modern civil engineering, the North Macedonia welcomes new highway
-                            stands as a testament to technical precision and strategic infrastructure development.</p>
-                        <p>Overcoming complex geographical challenges, our team implemented advanced cantilever
-                            construction methods to bridge the valley without disrupting the sensitive local ecosystem.
-                            This project marks a significant milestone in our commitment to connecting Southeast Europe
-                            through visionary engineering.</p>
-
-                        <div class="technical-specs-box">
-                            <div class="spec">
-                                <span class="spec-val">12k</span>
-                                <span class="spec-label">TONS OF STEEL</span>
-                            </div>
-                            <div class="spec">
-                                <span class="spec-val">45k</span>
-                                <span class="spec-label">m³ CONCRETE</span>
-                            </div>
-                            <div class="spec">
-                                <span class="spec-val">0</span>
-                                <span class="spec-label">SAFETY INCIDENTS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Project Gallery -->
-        <section class="project-gallery">
-            <div class="gallery-full-img">
-                <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841226132.png" alt="Project Overview">
-            </div>
-            <div class="container" style="margin-top: 30px;">
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841227120.png" alt="Technical Detail">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841230737.png" alt="Construction Progress">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841231795.png" alt="Urban Integration">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841240652.png" alt="Engineering Excellence">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841217730.png" alt="Site Inspection">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841218675.png" alt="Official Event">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Next Project Preview -->
-        <section class="next-project-section">
-            <a href="/projects" class="next-project-link">
-                <span class="gold-label">Next Project</span>
-                <h2 class="display-title small">Prishtina Business Hub &rarr;</h2>
-            </a>
-        </section>
+        <div id="project-detail-container">
+            <!-- Project content will be loaded dynamically here -->
+            <p style="text-align:center; padding: 100px;">Loading project...</p>
+        </div>
 
     </main>
 
@@ -189,6 +85,111 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            const container = document.getElementById('project-detail-container');
+            
+            if (!slug) {
+                container.innerHTML = '<p style="text-align:center; padding: 100px;">Project not found.</p>';
+                return;
+            }
+            
+            try {
+                const res = await fetch(`/api/public/projects?slug=${encodeURIComponent(slug)}`);
+                if (!res.ok) throw new Error('Failed to load project');
+                const project = await res.json();
+                
+                if (!project) {
+                    container.innerHTML = '<p style="text-align:center; padding: 100px;">Project not found.</p>';
+                    return;
+                }
+                
+                document.title = `${project.title} - 2XAR`;
+                
+                let galleryHtml = '';
+                if (project.gallery && project.gallery.length > 0) {
+                    const galleryItems = project.gallery.map(img => `
+                        <div class="gallery-item">
+                            <img src="${img}" alt="${project.title} Image">
+                        </div>
+                    `).join('');
+                    galleryHtml = `
+                    <div class="container" style="margin-top: 30px;">
+                        <div class="gallery-grid">
+                            ${galleryItems}
+                        </div>
+                    </div>`;
+                }
+
+                container.innerHTML = `
+                    <section class="page-header">
+                        <div class="container">
+                            <div class="page-header-inner">
+                                <h1 class="page-title">${project.title}</h1>
+                                <div class="page-subtitle">${project.category || 'Project'} <br> ${(project.project_type || '').replace('-', ' ').toUpperCase()} | ${(project.country || '').toUpperCase()}</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-intro-section">
+                        <div class="container">
+                            <div class="project-intro-grid">
+                                <div class="project-meta-col">
+                                    <div class="meta-item">
+                                        <div class="meta-icon-row"><i class="ph-fill ph-map-pin"></i><span class="gold-label">Location</span></div>
+                                        <p>${project.location || project.country || 'N/A'}</p>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-icon-row"><i class="ph-fill ph-calendar-check"></i><span class="gold-label">Status</span></div>
+                                        <p>${project.status || 'Active'}</p>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-icon-row"><i class="ph-fill ph-ruler"></i><span class="gold-label">Scale</span></div>
+                                        <p>${project.scale || 'N/A'}</p>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-icon-row"><i class="ph-fill ph-briefcase"></i><span class="gold-label">Client</span></div>
+                                        <p>${project.client || 'N/A'}</p>
+                                    </div>
+                                </div>
+                                <div class="project-description-col">
+                                    <h2 class="display-title small">${project.description || 'Project Overview'}</h2>
+                                    <div class="lead-text">${project.full_content || ''}</div>
+
+                                    ${(project.spec_steel || project.spec_concrete || project.spec_incidents) ? `
+                                    <div class="technical-specs-box">
+                                        ${project.spec_steel ? `<div class="spec"><span class="spec-val">${project.spec_steel}</span><span class="spec-label">TONS OF STEEL</span></div>` : ''}
+                                        ${project.spec_concrete ? `<div class="spec"><span class="spec-val">${project.spec_concrete}</span><span class="spec-label">m³ CONCRETE</span></div>` : ''}
+                                        ${project.spec_incidents ? `<div class="spec"><span class="spec-val">${project.spec_incidents}</span><span class="spec-label">SAFETY INCIDENTS</span></div>` : ''}
+                                    </div>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-gallery">
+                        ${project.image ? `
+                        <div class="gallery-full-img">
+                            <img src="${project.image}" alt="${project.title} Overview">
+                        </div>` : ''}
+                        ${galleryHtml}
+                    </section>
+                    
+                    <section class="next-project-section">
+                        <a href="/projects" class="next-project-link">
+                            <span class="gold-label">Back</span>
+                            <h2 class="display-title small">View All Projects &rarr;</h2>
+                        </a>
+                    </section>
+                `;
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p style="text-align:center; padding: 100px;">Error loading project.</p>';
+            }
+        });
+    </script>
 </body>
 
 </html>

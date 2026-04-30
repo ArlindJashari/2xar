@@ -128,134 +128,8 @@
             </div>
 
             <div class="project-grid-wrapper gallery-grid-layout">
-                <div class="container project-grid">
-                    <!-- Set 1 -->
-                    <!-- Project 1: Featured -->
-                    <div class="project-card featured" data-sector="infrastructure" data-location="macedonia albania" data-type="epc">
-                        <div class="card-img-wrapper">
-                            <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841226132.png"
-                                alt="Highway Infrastructure Development">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="project-category">Infrastructure</span>
-                                <h3>North Macedonia welcomes new highway</h3>
-                                <p>Major transport hub connecting regions through visionary civil engineering.</p>
-                                <div class="card-footer">
-                                    <span class="project-location">ALBANIA / MKD</span>
-                                    <a href="/project-detail" class="project-link stretched-link">Explore &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 & 3 Column -->
-                    <div class="project-column">
-                        <div class="project-card small" data-sector="buildings" data-location="kosovo" data-type="design-build">
-                            <div class="card-img-wrapper">
-                                <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841227120.png"
-                                    alt="Urban Civil Engineering">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-content">
-                                    <span class="project-category">Civil Engineering</span>
-                                    <h3>Prishtina Business Hub</h3>
-                                    <div class="card-footer">
-                                        <a href="/project-detail" class="project-link stretched-link">Details &rarr;</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card small" data-sector="water" data-location="kosovo" data-type="turnkey">
-                            <div class="card-img-wrapper">
-                                <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841230737.png"
-                                    alt="Water Treatment Infrastructure">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-content">
-                                    <span class="project-category">Environment</span>
-                                    <h3>Regional Water Plant</h3>
-                                    <div class="card-footer">
-                                        <a href="/project-detail" class="project-link stretched-link">Details &rarr;</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: Landscape -->
-                    <div class="project-card landscape" data-sector="urban" data-location="kosovo" data-type="construction-management">
-                        <div class="card-img-wrapper">
-                            <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841231795.png"
-                                alt="Modern Highway Construction">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="project-category">Urban Planning</span>
-                                <h3>City Boulevard Expansion</h3>
-                                <p>Modernizing city centers with sustainable infrastructure and smart design.</p>
-                                <div class="card-footer">
-                                    <span class="project-location">PRISHTINA, KOSOVO</span>
-                                    <a href="/project-detail" class="project-link stretched-link">Explore &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Project 6: Featured -->
-                    <div class="project-card featured" data-sector="water" data-location="kosovo" data-type="epc">
-                        <div class="card-img-wrapper">
-                            <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841240652.png"
-                                alt="Advanced Engineering Site">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="project-category">Water & Environment</span>
-                                <h3>Pumping Stations</h3>
-                                <p>Advanced water management systems for regional agricultural and urban needs.</p>
-                                <div class="card-footer">
-                                    <span class="project-location">KOSOVO</span>
-                                    <a href="/project-detail" class="project-link stretched-link">Explore &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 7 & 8 Column -->
-                    <div class="project-column">
-                        <div class="project-card small" data-sector="infrastructure" data-location="albania" data-type="construction-management">
-                            <div class="card-img-wrapper">
-                                <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841217730.png"
-                                    alt="Official Site Inspection">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-content">
-                                    <span class="project-category">Site Inspection</span>
-                                    <h3>Project Site Technical Review</h3>
-                                    <div class="card-footer">
-                                        <a href="/project-detail" class="project-link stretched-link">Details &rarr;</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card small" data-sector="infrastructure" data-location="see" data-type="epc">
-                            <div class="card-img-wrapper">
-                                <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841218675.png"
-                                    alt="Infrastructure Press Conference">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-content">
-                                    <span class="project-category">Public Relations</span>
-                                    <h3>Regional Leadership Visit</h3>
-                                    <div class="card-footer">
-                                        <a href="/project-detail" class="project-link stretched-link">Details &rarr;</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container project-grid" id="dynamic-project-grid">
+                    <!-- Projects will be dynamically loaded here -->
                 </div>
             </div>
         </section>
@@ -280,19 +154,81 @@
 
     <script type="module" src="/src/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             const sectorFilter = document.getElementById('sector-filter');
             const locationFilter = document.getElementById('location-filter');
             const typeFilter = document.getElementById('type-filter');
             const searchFilter = document.getElementById('search-filter');
-            const projectCards = document.querySelectorAll('.project-card');
+            const grid = document.getElementById('dynamic-project-grid');
+
+            // Fetch projects from CMS
+            async function loadProjects() {
+                try {
+                    const res = await fetch('/api/public/projects');
+                    if (!res.ok) throw new Error('Failed to load');
+                    const projects = await res.json();
+                    
+                    grid.innerHTML = '';
+                    let smallCardBuffer = [];
+
+                    const flushSmallCards = () => {
+                        if (smallCardBuffer.length > 0) {
+                            const col = document.createElement('div');
+                            col.className = 'project-column';
+                            smallCardBuffer.forEach(html => col.innerHTML += html);
+                            grid.appendChild(col);
+                            smallCardBuffer = [];
+                        }
+                    };
+
+                    projects.forEach(p => {
+                        const isSmall = p.card_size === 'small';
+                        const linkText = isSmall ? 'Details &rarr;' : 'Explore &rarr;';
+                        
+                        const cardHtml = `
+                            <div class="project-card ${p.card_size || 'featured'}" data-sector="${p.category || ''}" data-location="${p.country || ''}" data-type="${p.project_type || ''}">
+                                <div class="card-img-wrapper">
+                                    <img src="${p.image || ''}" alt="${p.title}">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-content">
+                                        <span class="project-category">${p.category || 'Project'}</span>
+                                        <h3>${p.title}</h3>
+                                        ${!isSmall && p.description ? `<p>${p.description}</p>` : ''}
+                                        <div class="card-footer">
+                                            ${!isSmall && p.location ? `<span class="project-location">${p.location.toUpperCase()}</span>` : ''}
+                                            <a href="/project-detail.html?slug=${p.slug}" class="project-link stretched-link">${linkText}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        if (isSmall) {
+                            smallCardBuffer.push(cardHtml);
+                            if (smallCardBuffer.length === 2) flushSmallCards();
+                        } else {
+                            flushSmallCards();
+                            const temp = document.createElement('div');
+                            temp.innerHTML = cardHtml;
+                            grid.appendChild(temp.firstElementChild);
+                        }
+                    });
+                    flushSmallCards();
+                    filterProjects(); // Apply any initial filters
+                } catch (err) {
+                    console.error(err);
+                    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px;">No projects found.</p>';
+                }
+            }
 
             function filterProjects() {
-                const sectorVal = sectorFilter.value.toLowerCase();
-                const locationVal = locationFilter.value.toLowerCase();
-                const typeVal = typeFilter.value.toLowerCase();
-                const searchVal = searchFilter.value.toLowerCase();
+                const sectorVal = sectorFilter ? sectorFilter.value.toLowerCase() : '';
+                const locationVal = locationFilter ? locationFilter.value.toLowerCase() : '';
+                const typeVal = typeFilter ? typeFilter.value.toLowerCase() : '';
+                const searchVal = searchFilter ? searchFilter.value.toLowerCase() : '';
 
+                const projectCards = document.querySelectorAll('.project-card');
                 projectCards.forEach(card => {
                     const cardSector = card.getAttribute('data-sector') || '';
                     const cardLocation = card.getAttribute('data-location') || '';
@@ -306,8 +242,17 @@
 
                     if (matchesSector && matchesLocation && matchesType && matchesSearch) {
                         card.style.display = '';
+                        // Also make sure parent column is visible if it has visible children
+                        if(card.parentElement.classList.contains('project-column')) {
+                            card.parentElement.style.display = '';
+                        }
                     } else {
                         card.style.display = 'none';
+                        // Hide parent column if all children are hidden
+                        if(card.parentElement.classList.contains('project-column')) {
+                            const visibleChildren = Array.from(card.parentElement.children).some(c => c.style.display !== 'none');
+                            if(!visibleChildren) card.parentElement.style.display = 'none';
+                        }
                     }
                 });
             }
@@ -316,6 +261,8 @@
             if(locationFilter) locationFilter.addEventListener('change', filterProjects);
             if(typeFilter) typeFilter.addEventListener('change', filterProjects);
             if(searchFilter) searchFilter.addEventListener('input', filterProjects);
+
+            loadProjects();
         });
     </script>
 </body>

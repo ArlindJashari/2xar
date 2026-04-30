@@ -35,6 +35,9 @@ app.use(session({
 // Serve uploaded files
 app.use('/cms/uploads', express.static(join(__dirname, 'uploads')));
 
+// Serve main public folder for image references
+app.use(express.static(join(__dirname, '..', 'public')));
+
 // API routes
 app.use('/api', routes);
 
