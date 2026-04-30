@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/src/style.css">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
             <div class="container">
                 <div class="filter-row">
                     <div class="filter-group">
-                        <select class="styled-select">
+                        <select class="styled-select" id="sector-filter">
                             <option value="">All Sectors</option>
                             <option value="buildings">Buildings</option>
                             <option value="infrastructure">Roads & Highways</option>
@@ -84,7 +84,7 @@
                             <option value="energy">Energy & Industrial</option>
                             <option value="urban">Urban Infrastructure</option>
                         </select>
-                        <select class="styled-select" title="Geography">
+                        <select class="styled-select" id="location-filter" title="Geography">
                             <option value="">All Countries</option>
                             <optgroup label="Western Balkans">
                                 <option value="kosovo">Kosovo</option>
@@ -96,7 +96,7 @@
                             </optgroup>
                             <option value="see">Southeast Europe</option>
                         </select>
-                        <select class="styled-select">
+                        <select class="styled-select" id="type-filter">
                             <option value="">All Types</option>
                             <option value="design-build">Design–Build</option>
                             <option value="epc">EPC</option>
@@ -108,7 +108,7 @@
                         <div class="search-icon-wrapper">
                             <i class="ph ph-magnifying-glass"></i>
                         </div>
-                        <input type="text" class="search-input" placeholder="Search Projects...">
+                        <input type="text" class="search-input" id="search-filter" placeholder="Search Projects...">
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="container project-grid">
                     <!-- Set 1 -->
                     <!-- Project 1: Featured -->
-                    <div class="project-card featured">
+                    <div class="project-card featured" data-sector="infrastructure" data-location="macedonia albania" data-type="epc">
                         <div class="card-img-wrapper">
                             <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841226132.png"
                                 alt="Highway Infrastructure Development">
@@ -151,7 +151,7 @@
 
                     <!-- Project 2 & 3 Column -->
                     <div class="project-column">
-                        <div class="project-card small">
+                        <div class="project-card small" data-sector="buildings" data-location="kosovo" data-type="design-build">
                             <div class="card-img-wrapper">
                                 <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841227120.png"
                                     alt="Urban Civil Engineering">
@@ -166,7 +166,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="project-card small">
+                        <div class="project-card small" data-sector="water" data-location="kosovo" data-type="turnkey">
                             <div class="card-img-wrapper">
                                 <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841230737.png"
                                     alt="Water Treatment Infrastructure">
@@ -184,7 +184,7 @@
                     </div>
 
                     <!-- Project 4: Landscape -->
-                    <div class="project-card landscape">
+                    <div class="project-card landscape" data-sector="urban" data-location="kosovo" data-type="construction-management">
                         <div class="card-img-wrapper">
                             <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841231795.png"
                                 alt="Modern Highway Construction">
@@ -205,7 +205,7 @@
 
 
                     <!-- Project 6: Featured -->
-                    <div class="project-card featured">
+                    <div class="project-card featured" data-sector="water" data-location="kosovo" data-type="epc">
                         <div class="card-img-wrapper">
                             <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841240652.png"
                                 alt="Advanced Engineering Site">
@@ -225,7 +225,7 @@
 
                     <!-- Project 7 & 8 Column -->
                     <div class="project-column">
-                        <div class="project-card small">
+                        <div class="project-card small" data-sector="infrastructure" data-location="albania" data-type="construction-management">
                             <div class="card-img-wrapper">
                                 <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841217730.png"
                                     alt="Official Site Inspection">
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="project-card small">
+                        <div class="project-card small" data-sector="infrastructure" data-location="see" data-type="epc">
                             <div class="card-img-wrapper">
                                 <img src="/Fotot e edituar te 2XAR/freepik_edit-the-provided-photo-b_2841218675.png"
                                     alt="Infrastructure Press Conference">
@@ -279,6 +279,45 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectorFilter = document.getElementById('sector-filter');
+            const locationFilter = document.getElementById('location-filter');
+            const typeFilter = document.getElementById('type-filter');
+            const searchFilter = document.getElementById('search-filter');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            function filterProjects() {
+                const sectorVal = sectorFilter.value.toLowerCase();
+                const locationVal = locationFilter.value.toLowerCase();
+                const typeVal = typeFilter.value.toLowerCase();
+                const searchVal = searchFilter.value.toLowerCase();
+
+                projectCards.forEach(card => {
+                    const cardSector = card.getAttribute('data-sector') || '';
+                    const cardLocation = card.getAttribute('data-location') || '';
+                    const cardType = card.getAttribute('data-type') || '';
+                    const cardText = card.textContent.toLowerCase();
+
+                    const matchesSector = sectorVal === '' || cardSector.includes(sectorVal);
+                    const matchesLocation = locationVal === '' || cardLocation.includes(locationVal);
+                    const matchesType = typeVal === '' || cardType.includes(typeVal);
+                    const matchesSearch = searchVal === '' || cardText.includes(searchVal);
+
+                    if (matchesSector && matchesLocation && matchesType && matchesSearch) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            if(sectorFilter) sectorFilter.addEventListener('change', filterProjects);
+            if(locationFilter) locationFilter.addEventListener('change', filterProjects);
+            if(typeFilter) typeFilter.addEventListener('change', filterProjects);
+            if(searchFilter) searchFilter.addEventListener('input', filterProjects);
+        });
+    </script>
 </body>
 
 </html>
