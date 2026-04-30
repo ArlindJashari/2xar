@@ -98,7 +98,22 @@ img {
   color: var(--color-accent);
 }
 
+/* News detail: article hero is light (#fafafa) — default light-nav is white-on-white */
+.page-news-detail .top-bar.light-nav .hero-nav a {
+  color: rgba(11, 11, 11, 0.72);
+}
 
+.page-news-detail .top-bar.light-nav .hero-nav a:hover {
+  color: var(--color-accent);
+}
+
+.page-news-detail .top-bar.light-nav .menu-toggle {
+  color: #111;
+}
+
+.page-news-detail .top-bar.light-nav .menu-toggle i {
+  color: inherit;
+}
 
 .top-bar-inner {
   display: flex;
@@ -1875,6 +1890,31 @@ main section {
   max-width: 800px;
 }
 
+.project-full-content {
+  max-width: 800px;
+}
+
+.project-full-content .lead-text {
+  margin-bottom: 25px;
+}
+
+/* News article body (CMS HTML): pull quotes */
+.article-content blockquote {
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--color-accent);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 40px;
+  margin: 60px 0;
+  line-height: 1.4;
+  font-weight: 300;
+  quotes: none;
+}
+
+.article-content blockquote p {
+  margin-bottom: 0;
+}
+
 .technical-specs-box {
   display: flex;
   gap: 60px;
@@ -2667,6 +2707,14 @@ main section {
 .jobs-section {
   padding: 120px 0;
   background: #f9f9f9;
+}
+
+/* Careers filters: avoid tight inline padding clipping the white bar vs gray section */
+.jobs-section .careers-filter-section {
+  padding: 36px 28px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .jobs-filters {
@@ -3859,6 +3907,12 @@ main section {
   }
 
   .article-quote {
+    font-size: 1.2rem !important;
+    padding-left: 20px !important;
+    margin: 40px 0 !important;
+  }
+
+  .article-content blockquote {
     font-size: 1.2rem !important;
     padding-left: 20px !important;
     margin: 40px 0 !important;

@@ -230,9 +230,9 @@
 
                 const projectCards = document.querySelectorAll('.project-card');
                 projectCards.forEach(card => {
-                    const cardSector = card.getAttribute('data-sector') || '';
-                    const cardLocation = card.getAttribute('data-location') || '';
-                    const cardType = card.getAttribute('data-type') || '';
+                    const cardSector = (card.getAttribute('data-sector') || '').toLowerCase();
+                    const cardLocation = (card.getAttribute('data-location') || '').toLowerCase();
+                    const cardType = (card.getAttribute('data-type') || '').toLowerCase();
                     const cardText = card.textContent.toLowerCase();
 
                     const matchesSector = sectorVal === '' || cardSector.includes(sectorVal);

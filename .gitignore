@@ -25,5 +25,7 @@ dist-ssr
 
 # CMS
 cms/cms.db
+cms/cms.db-shm
+cms/cms.db-wal
 cms/uploads/*
 !cms/uploads/.gitkeep

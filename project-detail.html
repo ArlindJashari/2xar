@@ -107,7 +107,12 @@
                 }
                 
                 document.title = `${project.title} - 2XAR`;
-                
+
+                const descriptionBlock = project.full_content
+                    ? `<div class="project-full-content">${project.full_content}</div>`
+                    : `<h2 class="display-title small" style="color: #000; margin-bottom: 20px;">${project.title}</h2>
+                        <div class="lead-text" style="color: #1a1a1a;">${project.description || ''}</div>`;
+
                 let galleryHtml = '';
                 if (project.gallery && project.gallery.length > 0) {
                     const galleryItems = project.gallery.map(img => `
@@ -124,39 +129,38 @@
                 }
 
                 container.innerHTML = `
-                    <section class="page-header">
+                    <section class="page-header" style="background: #000; color: #fff;">
                         <div class="container">
                             <div class="page-header-inner">
-                                <h1 class="page-title">${project.title}</h1>
-                                <div class="page-subtitle">${project.category || 'Project'} <br> ${(project.project_type || '').replace('-', ' ').toUpperCase()} | ${(project.country || '').toUpperCase()}</div>
+                                <h1 class="page-title" style="color: #fff;">${project.title}</h1>
+                                <div class="page-subtitle" style="color: var(--color-accent);">${project.category || 'Project'} <br> ${(project.project_type || '').replace('-', ' ').toUpperCase()} | ${(project.country || '').toUpperCase()}</div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="project-intro-section">
+                    <section class="project-intro-section" style="background: #fff; color: #000;">
                         <div class="container">
                             <div class="project-intro-grid">
                                 <div class="project-meta-col">
-                                    <div class="meta-item">
+                                    <div class="meta-item" ${project.location || project.country ? '' : 'style="display:none"'}>
                                         <div class="meta-icon-row"><i class="ph-fill ph-map-pin"></i><span class="gold-label">Location</span></div>
-                                        <p>${project.location || project.country || 'N/A'}</p>
+                                        <p>${project.location || project.country || ''}</p>
                                     </div>
-                                    <div class="meta-item">
+                                    <div class="meta-item" ${project.status ? '' : 'style="display:none"'}>
                                         <div class="meta-icon-row"><i class="ph-fill ph-calendar-check"></i><span class="gold-label">Status</span></div>
                                         <p>${project.status || 'Active'}</p>
                                     </div>
-                                    <div class="meta-item">
+                                    <div class="meta-item" ${project.scale ? '' : 'style="display:none"'}>
                                         <div class="meta-icon-row"><i class="ph-fill ph-ruler"></i><span class="gold-label">Scale</span></div>
-                                        <p>${project.scale || 'N/A'}</p>
+                                        <p>${project.scale || ''}</p>
                                     </div>
-                                    <div class="meta-item">
+                                    <div class="meta-item" ${project.client ? '' : 'style="display:none"'}>
                                         <div class="meta-icon-row"><i class="ph-fill ph-briefcase"></i><span class="gold-label">Client</span></div>
-                                        <p>${project.client || 'N/A'}</p>
+                                        <p>${project.client || ''}</p>
                                     </div>
                                 </div>
                                 <div class="project-description-col">
-                                    <h2 class="display-title small">${project.description || 'Project Overview'}</h2>
-                                    <div class="lead-text">${project.full_content || ''}</div>
+                                    ${descriptionBlock}
 
                                     ${(project.spec_steel || project.spec_concrete || project.spec_incidents) ? `
                                     <div class="technical-specs-box">
@@ -177,10 +181,10 @@
                         ${galleryHtml}
                     </section>
                     
-                    <section class="next-project-section">
+                    <section class="next-project-section" style="background: #000; padding: 100px 0;">
                         <a href="/projects" class="next-project-link">
-                            <span class="gold-label">Back</span>
-                            <h2 class="display-title small">View All Projects &rarr;</h2>
+                            <span class="gold-label" style="color: var(--color-accent);">Back</span>
+                            <h2 class="display-title small" style="color: #fff;">View All Projects &rarr;</h2>
                         </a>
                     </section>
                 `;

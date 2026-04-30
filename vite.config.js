@@ -6,7 +6,7 @@ const htmlExtFallback = () => {
     name: 'html-ext-fallback',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url.length > 1 && req.url.indexOf('.') === -1) {
+        if (req.url.length > 1 && req.url.indexOf('.') === -1 && !req.url.startsWith('/api') && !req.url.startsWith('/admin')) {
           req.url += '.html';
         }
         next();
