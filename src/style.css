@@ -699,8 +699,8 @@ img {
 .card-overlay {
   position: absolute;
   inset: 0;
-  padding: 40px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -716,21 +716,27 @@ img {
 
 .project-category {
   color: var(--color-accent);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
   display: block;
 }
 
 .card-content h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   text-transform: uppercase;
   color: #fff;
+}
+
+/* Specific fix for small cards to prevent text overflow */
+.project-card.small .card-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
 }
 
 .card-content p {
