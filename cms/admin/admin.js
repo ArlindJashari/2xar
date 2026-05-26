@@ -172,43 +172,43 @@ const crudConfig = {
     columns: ['image', 'title', 'category', 'date', 'is_published'],
     fields: [
       { key: 'title', label: 'Title', type: 'text', required: true },
-      { key: 'slug', label: 'Slug', type: 'text', required: true },
+      { key: 'slug', label: 'Slug', type: 'text', required: true, description: 'URL-friendly identifier. Automatically generated from Title.' },
       { key: 'category', label: 'Category', type: 'select', options: ['Announcement', 'Infrastructure', 'Environmental', 'Water & Environment', 'Press Release'] },
-      { key: 'date', label: 'Date', type: 'date' },
-      { key: 'location', label: 'Location', type: 'text' },
-      { key: 'image', label: 'Main Image', type: 'image' },
-      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery' },
-      { key: 'excerpt', label: 'Excerpt', type: 'textarea' },
-      { key: 'content', label: 'Full Content (HTML)', type: 'textarea' },
-      { key: 'is_published', label: 'Published', type: 'checkbox' },
-      { key: 'is_featured', label: 'Featured', type: 'checkbox' },
-      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+      { key: 'date', label: 'Date', type: 'date', description: 'Publishing date displayed on the article page.' },
+      { key: 'location', label: 'Location', type: 'text', description: 'Geographic location associated with the news (e.g., PRISHTINA, KOSOVO).' },
+      { key: 'image', label: 'Main Image', type: 'image', description: 'The cover banner image of the article.' },
+      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery', description: 'Additional showcase images appearing in the gallery grid below the content.' },
+      { key: 'excerpt', label: 'Excerpt', type: 'textarea', description: 'A short engaging summary of the article shown on the news listing grid.' },
+      { key: 'content', label: 'Full Content', type: 'textarea', description: 'Build and style your article visually. Arrange paragraphs, quotes, subheadings, and images in any layout order.' },
+      { key: 'is_published', label: 'Published', type: 'checkbox', description: 'Controls visibility on the live site. Unchecked articles are saved as drafts.' },
+      { key: 'is_featured', label: 'Featured', type: 'checkbox', description: 'Highlights this article prominently at the top of the news section.' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number', description: 'Numeric rank. Lower numbers appear first.' },
     ]
   },
   projects: {
     columns: ['image', 'title', 'category', 'location', 'is_published'],
     fields: [
       { key: 'title', label: 'Title', type: 'text', required: true },
-      { key: 'slug', label: 'Slug', type: 'text', required: true },
+      { key: 'slug', label: 'Slug', type: 'text', required: true, description: 'URL-friendly name used in the address bar.' },
       { key: 'category', label: 'Category', type: 'select', options: ['Infrastructure', 'Civil Engineering', 'Environment', 'Urban Planning', 'Water & Environment', 'Site Inspection', 'Public Relations', 'Energy'] },
-      { key: 'location', label: 'Location', type: 'text' },
+      { key: 'location', label: 'Location', type: 'text', description: 'Exact city or region of the worksite.' },
       { key: 'country', label: 'Country', type: 'select', options: ['', 'kosovo', 'albania', 'macedonia', 'montenegro', 'bosnia', 'serbia'] },
-      { key: 'project_type', label: 'Project Type', type: 'select', options: ['', 'design-build', 'epc', 'construction-management', 'turnkey'] },
-      { key: 'status', label: 'Status (e.g. Completed 2023)', type: 'text' },
-      { key: 'scale', label: 'Scale (e.g. 800m Span)', type: 'text' },
-      { key: 'client', label: 'Client', type: 'text' },
-      { key: 'spec_steel', label: 'Spec: Steel Tons', type: 'text' },
-      { key: 'spec_concrete', label: 'Spec: Concrete m³', type: 'text' },
-      { key: 'spec_incidents', label: 'Spec: Safety Incidents', type: 'text' },
-      { key: 'card_size', label: 'Card Size', type: 'select', options: ['small', 'featured', 'landscape'] },
-      { key: 'value', label: 'Project Value', type: 'text' },
-      { key: 'image', label: 'Main Image', type: 'image' },
-      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery' },
-      { key: 'description', label: 'Short Description', type: 'textarea' },
-      { key: 'full_content', label: 'Full Content (HTML)', type: 'textarea' },
-      { key: 'is_published', label: 'Published', type: 'checkbox' },
-      { key: 'is_featured', label: 'Featured', type: 'checkbox' },
-      { key: 'sort_order', label: 'Sort Order', type: 'number' },
+      { key: 'project_type', label: 'Project Type', type: 'select', options: ['', 'design-build', 'epc', 'construction-management', 'turnkey'], description: 'Contract framework style.' },
+      { key: 'status', label: 'Status (e.g. Completed 2023)', type: 'text', description: 'Current progress statement.' },
+      { key: 'scale', label: 'Scale (e.g. 800m Span)', type: 'text', description: 'Scope parameters.' },
+      { key: 'client', label: 'Client', type: 'text', description: 'The purchasing organization or entity.' },
+      { key: 'spec_steel', label: 'Spec: Steel Tons', type: 'text', description: 'Total metric tons of steel used.' },
+      { key: 'spec_concrete', label: 'Spec: Concrete m³', type: 'text', description: 'Total cubic meters of concrete poured.' },
+      { key: 'spec_incidents', label: 'Spec: Safety Incidents', type: 'text', description: 'Count of active HSE recordable safety events.' },
+      { key: 'card_size', label: 'Card Size', type: 'select', options: ['small', 'featured', 'landscape'], description: 'Grid footprint visual size on the projects page.' },
+      { key: 'value', label: 'Project Value', type: 'text', description: 'Total contracted financial cost in Millions (e.g. €140M).' },
+      { key: 'image', label: 'Main Image', type: 'image', description: 'Primary showcase banner image.' },
+      { key: 'gallery', label: 'Gallery Images (Upload multiple)', type: 'gallery', description: 'Visual showcase gallery items.' },
+      { key: 'description', label: 'Short Description', type: 'textarea', description: 'Short introductory abstract.' },
+      { key: 'full_content', label: 'Full Content', type: 'textarea', description: 'Visually layout the project profile details.' },
+      { key: 'is_published', label: 'Published', type: 'checkbox', description: 'Toggles global visibility in your public catalog.' },
+      { key: 'is_featured', label: 'Featured', type: 'checkbox', description: 'Showcases this masterpiece on the landing page.' },
+      { key: 'sort_order', label: 'Sort Order', type: 'number', description: 'Controls ordering position in catalog listings.' },
     ]
   },
   careers: {
@@ -416,6 +416,9 @@ function renderEditor(section, data) {
       </form>
     </div>`;
 
+  // Initialize visual block builders
+  initBlockBuilders(section, data);
+
   // Auto-slug from title/name
   const titleInput = editorView.querySelector('[name="title"]') || editorView.querySelector('[name="name"]');
   const slugInput = editorView.querySelector('[name="slug"]');
@@ -424,7 +427,7 @@ function renderEditor(section, data) {
   }
 
   // Image upload handlers
-  editorView.querySelectorAll('.image-upload-zone input[type=file]').forEach(input => {
+  editorView.querySelectorAll('.image-upload-zone input[type=file][data-field]').forEach(input => {
     input.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -542,10 +545,36 @@ function renderEditor(section, data) {
 
 function renderField(field, data) {
   const val = data[field.key] ?? '';
+  
+  // Intercept rich layout builder fields
+  if (field.key === 'content' || field.key === 'full_content') {
+    return `<div class="form-group builder-container" data-field-key="${field.key}">
+      <label>${field.label} — <span style="color:var(--accent); text-transform:none; font-weight:normal;">Visual Content Builder</span></label>
+      <input type="hidden" name="${field.key}" id="builder-hidden-${field.key}" value="${val.replace(/"/g, '&quot;')}">
+      <div class="blocks-list" id="blocks-list-${field.key}">
+        <!-- Blocks will be loaded dynamically -->
+      </div>
+      <div class="builder-actions-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; padding:16px; background:var(--bg-input); border:1px solid var(--border); border-radius:8px;">
+        <button type="button" class="btn btn-outline btn-sm add-block-btn" data-type="text" data-field-key="${field.key}"><i class="ph ph-text-t"></i> + Paragraph</button>
+        <button type="button" class="btn btn-outline btn-sm add-block-btn" data-type="subheading" data-field-key="${field.key}"><i class="ph ph-text-h-two"></i> + Subheading</button>
+        <button type="button" class="btn btn-outline btn-sm add-block-btn" data-type="quote" data-field-key="${field.key}"><i class="ph ph-quotes"></i> + Quote</button>
+        <button type="button" class="btn btn-outline btn-sm add-block-btn" data-type="image-full" data-field-key="${field.key}"><i class="ph ph-image"></i> + Full-Width Image</button>
+        <button type="button" class="btn btn-outline btn-sm add-block-btn" data-type="image-two" data-field-key="${field.key}"><i class="ph ph-columns"></i> + Two-Column Images</button>
+      </div>
+    </div>`;
+  }
+
+  const descHtml = field.description 
+    ? `<div class="field-help-text" style="font-size:0.8rem; color:var(--text-muted); margin-top:4px; line-height:1.4;"><i class="ph ph-info" style="vertical-align:middle; margin-right:4px;"></i>${field.description}</div>` 
+    : '';
+
   if (field.type === 'checkbox') {
-    return `<div class="form-group"><label style="display:flex;align-items:center;gap:10px;cursor:pointer;text-transform:none;font-size:.9rem">
-      <input type="checkbox" name="${field.key}" ${val ? 'checked' : ''} style="width:18px;height:18px;accent-color:var(--accent)"> ${field.label}
-    </label></div>`;
+    return `<div class="form-group" style="margin-bottom:24px;">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;text-transform:none;font-size:.9rem; margin-bottom:4px;">
+        <input type="checkbox" name="${field.key}" ${val ? 'checked' : ''} style="width:18px;height:18px;accent-color:var(--accent)"> ${field.label}
+      </label>
+      ${descHtml}
+    </div>`;
   }
   if (field.type === 'image') {
     return `<div class="form-group"><label>${field.label}</label>
@@ -553,29 +582,31 @@ function renderField(field, data) {
       ${val ? `<img src="${val}" class="image-preview" onerror="this.style.display='none'">` : ''}
       <div class="image-upload-zone" style="margin-top:8px"><i class="ph ph-upload-simple"></i><p>Click or drag to upload</p><input type="file" accept="image/*,video/*" data-field="${field.key}"></div>
       <input type="text" name="${field.key}" value="${val}" placeholder="Or enter URL directly" style="margin-top:8px">
+      ${descHtml}
     </div>`;
   }
   if (field.type === 'select') {
     return `<div class="form-group"><label>${field.label}</label><select name="${field.key}">
       ${(field.options || []).map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o || '— Select —'}</option>`).join('')}
-    </select></div>`;
+    </select>${descHtml}</div>`;
   }
   if (field.type === 'gallery') {
     return `<div class="form-group"><label>${field.label}</label>
       <input type="hidden" name="${field.key}" value="${val ? val.replace(/"/g, '&quot;') : '[]'}">
       <div class="gallery-preview-grid" id="gallery-grid-${field.key}" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;"></div>
       <div class="image-upload-zone"><i class="ph ph-upload-simple"></i><p>Click or drag to upload multiple images</p><input type="file" multiple accept="image/*,video/*" data-gallery-field="${field.key}"></div>
+      ${descHtml}
     </div>`;
   }
   if (field.type === 'json_array') {
     let textVal = '';
     try { textVal = JSON.parse(val || '[]').join('\\n'); } catch { textVal = val; }
-    return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${textVal}</textarea></div>`;
+    return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${textVal}</textarea>${descHtml}</div>`;
   }
   if (field.type === 'textarea') {
-    return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${val}</textarea></div>`;
+    return `<div class="form-group"><label>${field.label}</label><textarea name="${field.key}" rows="5">${val}</textarea>${descHtml}</div>`;
   }
-  return `<div class="form-group"><label>${field.label}</label><input type="${field.type || 'text'}" name="${field.key}" value="${val}" ${field.required ? 'required' : ''}></div>`;
+  return `<div class="form-group"><label>${field.label}</label><input type="${field.type || 'text'}" name="${field.key}" value="${val}" ${field.required ? 'required' : ''}>${descHtml}</div>`;
 }
 
 // ── Settings ─────────────────────────────────────────────
@@ -621,5 +652,314 @@ async function renderSettings(area) {
     }));
     await api('/settings', { method: 'PUT', body: { settings } });
     toast('Settings saved!');
+  });
+}
+
+// ── Visual Content Builder Engine ────────────────────────
+function parseHTMLToBlocks(html) {
+  const blocks = [];
+  if (!html) return blocks;
+  
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const children = Array.from(doc.body.children);
+  
+  if (children.length === 0 && html.trim()) {
+    blocks.push({ type: 'text', content: html.trim() });
+    return blocks;
+  }
+  
+  children.forEach(el => {
+    const tagName = el.tagName.toUpperCase();
+    
+    if (tagName === 'H2' || tagName === 'H3') {
+      blocks.push({ type: 'subheading', content: el.textContent.trim() });
+    } else if (tagName === 'BLOCKQUOTE') {
+      blocks.push({ type: 'quote', content: el.textContent.trim() });
+    } else if (tagName === 'FIGURE' && el.classList.contains('full-width')) {
+      const img = el.querySelector('img');
+      blocks.push({ type: 'image-full', content: img ? img.getAttribute('src') : '' });
+    } else if (el.classList.contains('two-column-images') || el.classList.contains('article-image-grid') || el.classList.contains('two-columns') || el.classList.contains('article-content-grid')) {
+      const imgs = Array.from(el.querySelectorAll('img')).map(img => img.getAttribute('src'));
+      blocks.push({ type: 'image-two', content: [imgs[0] || '', imgs[1] || ''] });
+    } else if (tagName === 'IMG') {
+      blocks.push({ type: 'image-full', content: el.getAttribute('src') || '' });
+    } else if (tagName === 'P') {
+      const img = el.querySelector('img');
+      if (img) {
+        blocks.push({ type: 'image-full', content: img.getAttribute('src') || '' });
+      } else {
+        blocks.push({ type: 'text', content: el.innerHTML.trim() });
+      }
+    } else {
+      blocks.push({ type: 'text', content: el.outerHTML });
+    }
+  });
+  
+  return blocks;
+}
+
+function compileBlocksToHTML(blocks) {
+  return blocks.map(block => {
+    if (block.type === 'text') {
+      if (!block.content.trim()) return '';
+      if (!block.content.trim().startsWith('<')) {
+        return `<p>${block.content.trim()}</p>`;
+      }
+      return block.content.trim();
+    }
+    if (block.type === 'subheading') {
+      if (!block.content.trim()) return '';
+      return `<h2>${block.content.trim()}</h2>`;
+    }
+    if (block.type === 'quote') {
+      if (!block.content.trim()) return '';
+      return `<blockquote class="article-quote">${block.content.trim()}</blockquote>`;
+    }
+    if (block.type === 'image-full') {
+      if (!block.content) return '';
+      return `<figure class="article-figure full-width"><img src="${block.content}" alt="Article image" class="article-content-img full-width-img"></figure>`;
+    }
+    if (block.type === 'image-two') {
+      const img1 = block.content[0] || '';
+      const img2 = block.content[1] || '';
+      if (!img1 && !img2) return '';
+      return `<div class="article-content-grid two-column-images">
+        ${img1 ? `<img src="${img1}" alt="Article grid image" class="grid-img">` : ''}
+        ${img2 ? `<img src="${img2}" alt="Article grid image" class="grid-img">` : ''}
+      </div>`;
+    }
+    return '';
+  }).filter(Boolean).join('\n');
+}
+
+function initBlockBuilders(section, data) {
+  document.querySelectorAll('.builder-container').forEach(container => {
+    const fieldKey = container.dataset.fieldKey;
+    const hiddenInput = document.getElementById(`builder-hidden-${fieldKey}`);
+    const listContainer = document.getElementById(`blocks-list-${fieldKey}`);
+    
+    let blocks = parseHTMLToBlocks(hiddenInput.value);
+    
+    const updateHiddenInput = () => {
+      hiddenInput.value = compileBlocksToHTML(blocks);
+    };
+    
+    const renderBlocks = () => {
+      if (blocks.length === 0) {
+        listContainer.innerHTML = `<div class="empty-state" style="padding:40px; border:1px dashed var(--border); border-radius:8px;"><i class="ph ph-cards"></i><p>This layout is empty. Click a button below to add your first content block!</p></div>`;
+        return;
+      }
+      
+      listContainer.innerHTML = blocks.map((block, index) => {
+        let blockContentHtml = '';
+        
+        if (block.type === 'text') {
+          blockContentHtml = `<textarea class="block-input text-block-input" rows="4" placeholder="Enter paragraph text..." style="width:100%; min-height:80px;">${block.content}</textarea>`;
+        } else if (block.type === 'subheading') {
+          blockContentHtml = `<input type="text" class="block-input subheading-block-input" placeholder="Enter subheading (H2)..." value="${block.content}" style="width:100%;">`;
+        } else if (block.type === 'quote') {
+          blockContentHtml = `<textarea class="block-input quote-block-input" rows="3" placeholder="Enter quote text..." style="width:100%; font-style:italic;">${block.content}</textarea>`;
+        } else if (block.type === 'image-full') {
+          blockContentHtml = `
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <input type="text" class="block-input image-url-input" placeholder="Enter image URL..." value="${block.content}" style="width:100%;">
+              ${block.content ? `<img src="${block.content}" class="image-preview" style="max-height:120px; width:auto; align-self:flex-start; object-fit:cover;">` : ''}
+              <div class="image-upload-zone" style="padding:16px;">
+                <i class="ph ph-upload-simple" style="font-size:1.5rem;"></i>
+                <p style="font-size:.8rem; margin:0;">Click to upload full-width image</p>
+                <input type="file" accept="image/*" class="block-file-input">
+              </div>
+            </div>`;
+        } else if (block.type === 'image-two') {
+          const img1 = block.content[0] || '';
+          const img2 = block.content[1] || '';
+          blockContentHtml = `
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <label style="font-size:.75rem; color:var(--text-muted);">Left Image</label>
+                <input type="text" class="block-input image-url-input-1" placeholder="Left image URL..." value="${img1}" style="width:100%;">
+                ${img1 ? `<img src="${img1}" class="image-preview" style="max-height:100px; width:auto; align-self:flex-start; object-fit:cover;">` : ''}
+                <div class="image-upload-zone" style="padding:12px;">
+                  <i class="ph ph-upload-simple" style="font-size:1.2rem;"></i>
+                  <input type="file" accept="image/*" class="block-file-input-1">
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <label style="font-size:.75rem; color:var(--text-muted);">Right Image</label>
+                <input type="text" class="block-input image-url-input-2" placeholder="Right image URL..." value="${img2}" style="width:100%;">
+                ${img2 ? `<img src="${img2}" class="image-preview" style="max-height:100px; width:auto; align-self:flex-start; object-fit:cover;">` : ''}
+                <div class="image-upload-zone" style="padding:12px;">
+                  <i class="ph ph-upload-simple" style="font-size:1.2rem;"></i>
+                  <input type="file" accept="image/*" class="block-file-input-2">
+                </div>
+              </div>
+            </div>`;
+        }
+        
+        const labels = { text: 'Paragraph', subheading: 'Subheading (H2)', quote: 'Pull Quote', 'image-full': 'Full-Width Image', 'image-two': 'Two-Column Images' };
+        const icons = { text: 'text-t', subheading: 'text-h-two', quote: 'quotes', 'image-full': 'image', 'image-two': 'columns' };
+        
+        return `
+          <div class="builder-block" data-index="${index}" style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:20px; margin-bottom:16px; position:relative; transition:all .2s;">
+            <div class="block-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">
+              <div style="display:flex; align-items:center; gap:8px; color:var(--accent); font-weight:600; font-size:.85rem;">
+                <i class="ph ph-${icons[block.type]}"></i> ${labels[block.type]}
+              </div>
+              <div class="block-controls" style="display:flex; gap:4px;">
+                <button type="button" class="btn-icon move-up-btn" data-index="${index}" title="Move Up" ${index === 0 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}><i class="ph ph-arrow-up" style="font-size:1rem;"></i></button>
+                <button type="button" class="btn-icon move-down-btn" data-index="${index}" title="Move Down" ${index === blocks.length - 1 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}><i class="ph ph-arrow-down" style="font-size:1rem;"></i></button>
+                <button type="button" class="btn-icon delete-block-btn" data-index="${index}" title="Delete Block" style="color:var(--danger);"><i class="ph ph-trash" style="font-size:1rem;"></i></button>
+              </div>
+            </div>
+            <div class="block-body">
+              ${blockContentHtml}
+            </div>
+          </div>`;
+      }).join('');
+      
+      bindBlockEvents();
+    };
+    
+    const bindBlockEvents = () => {
+      listContainer.querySelectorAll('.builder-block').forEach(blockEl => {
+        const index = parseInt(blockEl.dataset.index);
+        const block = blocks[index];
+        
+        if (block.type === 'text') {
+          const textarea = blockEl.querySelector('.text-block-input');
+          textarea.addEventListener('input', () => {
+            block.content = textarea.value;
+            updateHiddenInput();
+          });
+        } else if (block.type === 'subheading') {
+          const input = blockEl.querySelector('.subheading-block-input');
+          input.addEventListener('input', () => {
+            block.content = input.value;
+            updateHiddenInput();
+          });
+        } else if (block.type === 'quote') {
+          const textarea = blockEl.querySelector('.quote-block-input');
+          textarea.addEventListener('input', () => {
+            block.content = textarea.value;
+            updateHiddenInput();
+          });
+        } else if (block.type === 'image-full') {
+          const input = blockEl.querySelector('.image-url-input');
+          input.addEventListener('input', () => {
+            block.content = input.value;
+            updateHiddenInput();
+          });
+          
+          const fileInput = blockEl.querySelector('.block-file-input');
+          fileInput.addEventListener('change', async () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+            const zone = fileInput.closest('.image-upload-zone');
+            const originalText = zone.querySelector('p').textContent;
+            zone.querySelector('p').textContent = 'Uploading...';
+            try {
+              const res = await uploadFile(file);
+              block.content = res.url;
+              updateHiddenInput();
+              renderBlocks();
+            } catch {
+              zone.querySelector('p').textContent = 'Upload failed';
+              setTimeout(() => zone.querySelector('p').textContent = originalText, 2000);
+            }
+          });
+        } else if (block.type === 'image-two') {
+          const input1 = blockEl.querySelector('.image-url-input-1');
+          input1.addEventListener('input', () => {
+            block.content[0] = input1.value;
+            updateHiddenInput();
+          });
+          const input2 = blockEl.querySelector('.image-url-input-2');
+          input2.addEventListener('input', () => {
+            block.content[1] = input2.value;
+            updateHiddenInput();
+          });
+          
+          const fileInput1 = blockEl.querySelector('.block-file-input-1');
+          fileInput1.addEventListener('change', async () => {
+            const file = fileInput1.files[0];
+            if (!file) return;
+            const zone = fileInput1.closest('.image-upload-zone');
+            zone.style.opacity = '0.5';
+            try {
+              const res = await uploadFile(file);
+              block.content[0] = res.url;
+              updateHiddenInput();
+              renderBlocks();
+            } catch {
+              zone.style.opacity = '1';
+            }
+          });
+          
+          const fileInput2 = blockEl.querySelector('.block-file-input-2');
+          fileInput2.addEventListener('change', async () => {
+            const file = fileInput2.files[0];
+            if (!file) return;
+            const zone = fileInput2.closest('.image-upload-zone');
+            zone.style.opacity = '0.5';
+            try {
+              const res = await uploadFile(file);
+              block.content[1] = res.url;
+              updateHiddenInput();
+              renderBlocks();
+            } catch {
+              zone.style.opacity = '1';
+            }
+          });
+        }
+      });
+      
+      listContainer.querySelectorAll('.move-up-btn').forEach(btn => {
+        btn.onclick = () => {
+          const index = parseInt(btn.dataset.index);
+          if (index > 0) {
+            const temp = blocks[index];
+            blocks[index] = blocks[index - 1];
+            blocks[index - 1] = temp;
+            updateHiddenInput();
+            renderBlocks();
+          }
+        };
+      });
+      
+      listContainer.querySelectorAll('.move-down-btn').forEach(btn => {
+        btn.onclick = () => {
+          const index = parseInt(btn.dataset.index);
+          if (index < blocks.length - 1) {
+            const temp = blocks[index];
+            blocks[index] = blocks[index + 1];
+            blocks[index + 1] = temp;
+            updateHiddenInput();
+            renderBlocks();
+          }
+        };
+      });
+      
+      listContainer.querySelectorAll('.delete-block-btn').forEach(btn => {
+        btn.onclick = () => {
+          const index = parseInt(btn.dataset.index);
+          blocks.splice(index, 1);
+          updateHiddenInput();
+          renderBlocks();
+        };
+      });
+    };
+    
+    container.querySelectorAll('.add-block-btn').forEach(btn => {
+      btn.onclick = () => {
+        const type = btn.dataset.type;
+        const newBlock = { type, content: type === 'image-two' ? ['', ''] : '' };
+        blocks.push(newBlock);
+        updateHiddenInput();
+        renderBlocks();
+      };
+    });
+    
+    renderBlocks();
   });
 }

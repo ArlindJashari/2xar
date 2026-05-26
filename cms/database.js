@@ -112,6 +112,69 @@ export function initDatabase() {
       category TEXT DEFAULT 'general',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS hero_slides (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT,
+      subtitle TEXT,
+      description TEXT,
+      video_url TEXT,
+      cta_text TEXT,
+      cta_link TEXT,
+      is_published INTEGER DEFAULT 1,
+      sort_order INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS services (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      category TEXT DEFAULT 'Service',
+      icon TEXT,
+      image TEXT,
+      description TEXT,
+      list_items TEXT DEFAULT '[]',
+      is_published INTEGER DEFAULT 1,
+      sort_order INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS timeline (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      year TEXT NOT NULL,
+      title TEXT NOT NULL,
+      description TEXT,
+      image TEXT,
+      is_published INTEGER DEFAULT 1,
+      sort_order INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS team (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      role TEXT,
+      image TEXT,
+      bio TEXT,
+      is_published INTEGER DEFAULT 1,
+      sort_order INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS company_values (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      icon TEXT,
+      description TEXT,
+      is_published INTEGER DEFAULT 1,
+      sort_order INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
 
   if (database.prepare('SELECT COUNT(*) as count FROM users').get().count === 0) {

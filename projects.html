@@ -161,13 +161,25 @@
             const searchFilter = document.getElementById('search-filter');
             const grid = document.getElementById('dynamic-project-grid');
 
-            // Fetch projects from CMS
+            const gridMsg = (html) => {
+                grid.innerHTML = `<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px;max-width:520px;margin:0 auto;line-height:1.5;">${html}</p>`;
+            };
+
+            // Fetch projects from CMS (needs Node CMS or a Vercel rewrite to an API host — static-only deploy has no /api)
             async function loadProjects() {
                 try {
                     const res = await fetch('/api/public/projects');
-                    if (!res.ok) throw new Error('Failed to load');
+                    if (!res.ok) {
+                        gridMsg('Projects could not be loaded: the content API is not available on this host (e.g. static Vercel without a backend). Deploy the CMS server and proxy <code>/api</code> to it, or run the site with <code>vite</code> + <code>node cms/server.js</code> locally.');
+                        return;
+                    }
                     const projects = await res.json();
-                    
+                    if (!Array.isArray(projects)) throw new Error('Invalid response');
+                    if (projects.length === 0) {
+                        gridMsg('No projects found.');
+                        return;
+                    }
+
                     grid.innerHTML = '';
                     let smallCardBuffer = [];
 
@@ -218,7 +230,7 @@
                     filterProjects(); // Apply any initial filters
                 } catch (err) {
                     console.error(err);
-                    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px;">No projects found.</p>';
+                    gridMsg('Could not load projects (network error or invalid response).');
                 }
             }
 
