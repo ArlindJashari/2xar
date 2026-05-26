@@ -12,6 +12,16 @@ if (preg_match('#^/cms/uploads/#', $uri)) {
     return false; // let the built-in server serve the image
 }
 
+if (preg_match('#^/project-detail\.html#', $uri)) {
+    require __DIR__ . '/php-cms/project-detail.php';
+    return true;
+}
+
+if (preg_match('#^/news-detail\.html#', $uri)) {
+    require __DIR__ . '/php-cms/news-detail.php';
+    return true;
+}
+
 if (preg_match('#^/admin#', $uri)) {
     $filePath = __DIR__ . '/cms' . $uri;
     if (is_file($filePath)) {

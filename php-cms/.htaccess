@@ -2,6 +2,10 @@
     RewriteEngine On
     RewriteBase /
 
+    # Dynamic OG tags for details pages
+    RewriteRule ^project-detail\.html$ project-detail.php [L,QSA]
+    RewriteRule ^news-detail\.html$ news-detail.php [L,QSA]
+
     # Route /api/ to api/index.php
     RewriteCond %{REQUEST_URI} ^/api/ [NC]
     RewriteRule ^api/(.*)$ api/index.php [L,QSA]
