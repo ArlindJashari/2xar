@@ -182,6 +182,7 @@ const crudConfig = {
       { key: 'content', label: 'Full Content', type: 'textarea', description: 'Build and style your article visually. Arrange paragraphs, quotes, subheadings, and images in any layout order.' },
       { key: 'is_published', label: 'Published', type: 'checkbox', description: 'Controls visibility on the live site. Unchecked articles are saved as drafts.' },
       { key: 'is_featured', label: 'Featured', type: 'checkbox', description: 'Highlights this article prominently at the top of the news section.' },
+      { key: 'sync_to_projects', label: 'Add/Sync this to Projects also', type: 'checkbox', description: 'Automatically cross-posts or updates this news article in your Projects page.' },
       { key: 'sort_order', label: 'Sort Order', type: 'number', description: 'Numeric rank. Lower numbers appear first.' },
     ]
   },
@@ -208,6 +209,7 @@ const crudConfig = {
       { key: 'full_content', label: 'Full Content', type: 'textarea', description: 'Visually layout the project profile details.' },
       { key: 'is_published', label: 'Published', type: 'checkbox', description: 'Toggles global visibility in your public catalog.' },
       { key: 'is_featured', label: 'Featured', type: 'checkbox', description: 'Showcases this masterpiece on the landing page.' },
+      { key: 'sync_to_news', label: 'Add/Sync this to News also', type: 'checkbox', description: 'Automatically cross-posts or updates this project in your News & Insights section.' },
       { key: 'sort_order', label: 'Sort Order', type: 'number', description: 'Controls ordering position in catalog listings.' },
     ]
   },

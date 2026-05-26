@@ -52,6 +52,82 @@ function requireAuth() {
     }
 }
 
+function handleSync($tableName, $data, $db) {
+    if ($tableName === 'projects' && isset($data['sync_to_news']) && $data['sync_to_news'] == 1) {
+        $slug = $data['slug'];
+        $stmt = $db->prepare("SELECT id FROM news WHERE slug = ? LIMIT 1");
+        $stmt->execute([$slug]);
+        $existing = $stmt->fetch();
+
+        $newsData = [
+            'title' => $data['title'],
+            'slug' => $slug,
+            'excerpt' => $data['description'] ?? '',
+            'content' => $data['full_content'] ?? '',
+            'image' => $data['image'] ?? null,
+            'gallery' => $data['gallery'] ?? '[]',
+            'location' => $data['location'] ?? null,
+            'date' => date('Y-m-d'),
+            'is_published' => $data['is_published'] ?? 1,
+            'is_featured' => $data['is_featured'] ?? 0,
+            'sort_order' => $data['sort_order'] ?? 0,
+            'category' => 'Infrastructure'
+        ];
+
+        if ($existing) {
+            $keys = array_keys($newsData);
+            $setClause = implode(', ', array_map(function($k) { return "$k = ?"; }, $keys));
+            $values = array_values($newsData);
+            $values[] = $existing['id'];
+            $stmt = $db->prepare("UPDATE news SET {$setClause}, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
+            $stmt->execute($values);
+        } else {
+            $keys = array_keys($newsData);
+            $placeholders = implode(', ', array_fill(0, count($keys), '?'));
+            $columns = implode(', ', $keys);
+            $stmt = $db->prepare("INSERT INTO news ({$columns}) VALUES ({$placeholders})");
+            $stmt->execute(array_values($newsData));
+        }
+    }
+
+    if ($tableName === 'news' && isset($data['sync_to_projects']) && $data['sync_to_projects'] == 1) {
+        $slug = $data['slug'];
+        $stmt = $db->prepare("SELECT id FROM projects WHERE slug = ? LIMIT 1");
+        $stmt->execute([$slug]);
+        $existing = $stmt->fetch();
+
+        $projectData = [
+            'title' => $data['title'],
+            'slug' => $slug,
+            'description' => $data['excerpt'] ?? '',
+            'full_content' => $data['content'] ?? '',
+            'image' => $data['image'] ?? null,
+            'gallery' => $data['gallery'] ?? '[]',
+            'location' => $data['location'] ?? null,
+            'is_published' => $data['is_published'] ?? 1,
+            'is_featured' => $data['is_featured'] ?? 0,
+            'sort_order' => $data['sort_order'] ?? 0,
+            'category' => 'Infrastructure',
+            'card_size' => 'small'
+        ];
+
+        if ($existing) {
+            $keys = array_keys($projectData);
+            $setClause = implode(', ', array_map(function($k) { return "$k = ?"; }, $keys));
+            $values = array_values($projectData);
+            $values[] = $existing['id'];
+            $stmt = $db->prepare("UPDATE projects SET {$setClause}, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
+            $stmt->execute($values);
+        } else {
+            $keys = array_keys($projectData);
+            $placeholders = implode(', ', array_fill(0, count($keys), '?'));
+            $columns = implode(', ', $keys);
+            $stmt = $db->prepare("INSERT INTO projects ({$columns}) VALUES ({$placeholders})");
+            $stmt->execute(array_values($projectData));
+        }
+    }
+}
+
 // Routes
 if ($requestUri === '/auth/login' && $method === 'POST') {
     $body = getJsonBody();
@@ -215,6 +291,12 @@ if (preg_match('#^/([a-zA-Z0-9_]+)(?:/([0-9]+|reorder))?(?:/(toggle-publish))?$#
     // CREATE
     if ($method === 'POST' && !$idOrAction) {
         $data = getJsonBody();
+        
+        $sync_to_news = $data['sync_to_news'] ?? null;
+        $sync_to_projects = $data['sync_to_projects'] ?? null;
+        unset($data['sync_to_news']);
+        unset($data['sync_to_projects']);
+
         $keys = array_keys($data);
         if (empty($keys)) jsonResponse(['error' => 'No data provided'], 400);
         
@@ -227,6 +309,12 @@ if (preg_match('#^/([a-zA-Z0-9_]+)(?:/([0-9]+|reorder))?(?:/(toggle-publish))?$#
             $stmt->execute(array_values($data));
             $newId = $db->lastInsertId();
             
+            // Perform sync if requested
+            $syncData = $data;
+            if ($sync_to_news !== null) $syncData['sync_to_news'] = $sync_to_news;
+            if ($sync_to_projects !== null) $syncData['sync_to_projects'] = $sync_to_projects;
+            handleSync($tableName, $syncData, $db);
+
             $stmt = $db->prepare("SELECT * FROM {$tableName} WHERE id = ?");
             $stmt->execute([$newId]);
             jsonResponse($stmt->fetch(), 201);
@@ -267,12 +355,31 @@ if (preg_match('#^/([a-zA-Z0-9_]+)(?:/([0-9]+|reorder))?(?:/(toggle-publish))?$#
         $stmt->execute([$idOrAction]);
         $item = $stmt->fetch();
         if (!$item) jsonResponse(['error' => 'Not found'], 404);
+        
+        // Add virtual fields for sync status
+        if ($tableName === 'projects') {
+            $checkStmt = $db->prepare("SELECT COUNT(*) FROM news WHERE slug = ?");
+            $checkStmt->execute([$item['slug']]);
+            $item['sync_to_news'] = $checkStmt->fetchColumn() > 0 ? 1 : 0;
+        }
+        if ($tableName === 'news') {
+            $checkStmt = $db->prepare("SELECT COUNT(*) FROM projects WHERE slug = ?");
+            $checkStmt->execute([$item['slug']]);
+            $item['sync_to_projects'] = $checkStmt->fetchColumn() > 0 ? 1 : 0;
+        }
+        
         jsonResponse($item);
     }
 
     // UPDATE
     if ($method === 'PUT' && is_numeric($idOrAction)) {
         $data = getJsonBody();
+        
+        $sync_to_news = $data['sync_to_news'] ?? null;
+        $sync_to_projects = $data['sync_to_projects'] ?? null;
+        unset($data['sync_to_news']);
+        unset($data['sync_to_projects']);
+
         $keys = array_keys($data);
         if (empty($keys)) jsonResponse(['error' => 'No data provided'], 400);
 
@@ -284,6 +391,12 @@ if (preg_match('#^/([a-zA-Z0-9_]+)(?:/([0-9]+|reorder))?(?:/(toggle-publish))?$#
             $stmt = $db->prepare("UPDATE {$tableName} SET {$setClause}, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
             $stmt->execute($values);
             
+            // Perform sync if requested
+            $syncData = $data;
+            if ($sync_to_news !== null) $syncData['sync_to_news'] = $sync_to_news;
+            if ($sync_to_projects !== null) $syncData['sync_to_projects'] = $sync_to_projects;
+            handleSync($tableName, $syncData, $db);
+
             $stmt = $db->prepare("SELECT * FROM {$tableName} WHERE id = ?");
             $stmt->execute([$idOrAction]);
             jsonResponse($stmt->fetch());
