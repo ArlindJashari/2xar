@@ -1,7 +1,7 @@
 <?php
 // Local development router for PHP built-in server (php -S localhost:8000 router.php)
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 if (preg_match('#^/api/#', $uri)) {
     require __DIR__ . '/php-cms/api/index.php';
@@ -40,6 +40,29 @@ if (preg_match('#^/admin#', $uri)) {
     }
     // serve the index.html for SPA fallback
     echo file_get_contents(__DIR__ . '/cms/admin/index.html');
+    return true;
+}
+
+// Serve static files from the public directory if they exist there
+$publicFilePath = __DIR__ . '/public' . $uri;
+if (is_file($publicFilePath)) {
+    $ext = pathinfo($publicFilePath, PATHINFO_EXTENSION);
+    $mimeTypes = [
+        'css' => 'text/css',
+        'js'  => 'application/javascript',
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'jpeg'=> 'image/jpeg',
+        'gif' => 'image/gif',
+        'svg' => 'image/svg+xml',
+        'webp'=> 'image/webp',
+        'mp4' => 'video/mp4',
+        'webm'=> 'video/webm'
+    ];
+    if (isset($mimeTypes[$ext])) {
+        header('Content-Type: ' . $mimeTypes[$ext]);
+    }
+    readfile($publicFilePath);
     return true;
 }
 

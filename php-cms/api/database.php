@@ -214,6 +214,54 @@ function initDatabase() {
     if ($countProjects == 0) {
         $projectItems = [
             [
+                'title' => '2xAR Selected for Execution of Sunset Residential Project in Prishtina',
+                'slug' => '2xar-selected-for-execution-of-sunset-residential-project-in-prishtina',
+                'description' => '2xAR LLC has been selected for the execution of Sunset Residential, a premium residential development positioned at one of the most strategic urban gateways to Prishtina city centre, with construction scheduled to commence in August 2026.',
+                'full_content' => '<h2>Residential & Urban Development</h2>
+<p>PRISHTINA, KOSOVO — 2xAR LLC has been selected for the execution of Sunset Residential, a premium residential development positioned at one of the most strategic urban gateways to Prishtina city centre, with construction scheduled to commence in August 2026.</p>
+<p>Designed by the internationally recognized studio Maden Architects, the project represents a modern architectural statement that combines contemporary design, functionality, and elevated urban living standards within the capital’s rapidly evolving skyline.</p>
+
+<h2>A Landmark Residential Development</h2>
+<p>Sunset Residential has been envisioned as more than a residential complex — it is designed as a high-end urban living concept focused on architectural quality, long-term value, and modern lifestyle integration.</p>
+<p>The project will feature:</p>
+<ul>
+  <li>Contemporary residential units with panoramic city views</li>
+  <li>Expansive terraces and open-air living spaces</li>
+  <li>Premium façade systems and refined architectural detailing</li>
+  <li>Integrated green areas and landscaped surroundings</li>
+  <li>Modern underground parking and supporting infrastructure</li>
+</ul>
+<p>Located at the entrance to Prishtina city centre, the development offers direct access to key commercial and urban destinations while maintaining a strong residential character.</p>
+
+<h2>Execution by 2xAR</h2>
+<p>2xAR will lead the execution phase of the project, overseeing construction delivery, coordination, and implementation in alignment with the architectural vision developed by Maden Architects.</p>
+<p>The company will apply advanced construction management practices and engineering standards to ensure quality, efficiency, and long-term structural performance throughout all phases of development.</p>
+<blockquote class="article-quote">“This project reflects the type of modern urban developments that are shaping the future of Prishtina. Our focus will be on delivering a project defined by precision, quality, and execution excellence.”</blockquote>
+
+<h2>Architectural Vision by Maden Architects</h2>
+<p>The design concept emphasizes clean geometry, cascading upper levels, natural light, and a carefully balanced relationship between architecture and surrounding urban space.</p>
+<p>The project’s structured façade composition and contemporary design language are intended to create a distinctive visual identity while maximizing comfort and functionality for residents.</p>
+
+<h2>Building the Next Generation of Urban Living</h2>
+<p>Construction is expected to begin in August 2026, with Sunset Residential positioned to become one of the most recognizable new residential developments at the entrance of Kosovo’s capital city.</p>
+<p>The project further reinforces 2xAR’s growing presence in high-end residential and mixed-use developments across the region.</p>
+
+<figure class="article-figure full-width">
+  <img src="/cms/uploads/sunset-2.jpg" alt="Sunset Residential execution by 2xAR" class="article-content-img full-width-img">
+</figure>',
+                'image' => '/cms/uploads/sunset-1.jpg',
+                'category' => 'Civil Engineering',
+                'location' => 'Entrance to Prishtina city centre, Prishtina, Kosovo',
+                'country' => 'kosovo',
+                'project_type' => 'construction-management',
+                'card_size' => 'small',
+                'status' => 'Scheduled to commence in August 2026',
+                'scale' => 'Premium Residential Development',
+                'client' => 'Maden Architects',
+                'spec_steel' => '', 'spec_concrete' => '', 'spec_incidents' => '',
+                'sort_order' => 0
+            ],
+            [
                 'title' => 'North Macedonia Highway', 
                 'slug' => 'north-macedonia-highway', 
                 'description' => 'Major transport hub connecting regions through visionary civil engineering.', 

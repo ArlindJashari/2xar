@@ -25,7 +25,9 @@ async function uploadFile(file) {
   const fd = new FormData();
   fd.append('file', file);
   const res = await fetch(`${API}/upload`, { method: 'POST', body: fd, credentials: 'include' });
-  return res.json();
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Upload failed');
+  return data;
 }
 
 // ── Toast ────────────────────────────────────────────────
@@ -173,7 +175,7 @@ const crudConfig = {
     fields: [
       { key: 'title', label: 'Title', type: 'text', required: true },
       { key: 'slug', label: 'Slug', type: 'text', required: true, description: 'URL-friendly identifier. Automatically generated from Title.' },
-      { key: 'category', label: 'Category', type: 'select', options: ['Announcement', 'Infrastructure', 'Environmental', 'Water & Environment', 'Press Release'] },
+      { key: 'category', label: 'Category', type: 'select', options: ['Announcement', 'Building', 'Infrastructure', 'Environmental', 'Water & Environment', 'Press Release'] },
       { key: 'date', label: 'Date', type: 'date', description: 'Publishing date displayed on the article page.' },
       { key: 'location', label: 'Location', type: 'text', description: 'Geographic location associated with the news (e.g., PRISHTINA, KOSOVO).' },
       { key: 'image', label: 'Main Image', type: 'image', description: 'The cover banner image of the article.' },
@@ -191,7 +193,7 @@ const crudConfig = {
     fields: [
       { key: 'title', label: 'Title', type: 'text', required: true },
       { key: 'slug', label: 'Slug', type: 'text', required: true, description: 'URL-friendly name used in the address bar.' },
-      { key: 'category', label: 'Category', type: 'select', options: ['Infrastructure', 'Civil Engineering', 'Environment', 'Urban Planning', 'Water & Environment', 'Site Inspection', 'Public Relations', 'Energy'] },
+      { key: 'category', label: 'Category', type: 'select', options: ['Building', 'Infrastructure', 'Civil Engineering', 'Environment', 'Urban Planning', 'Water & Environment', 'Site Inspection', 'Public Relations', 'Energy'] },
       { key: 'location', label: 'Location', type: 'text', description: 'Exact city or region of the worksite.' },
       { key: 'country', label: 'Country', type: 'select', options: ['', 'kosovo', 'albania', 'macedonia', 'montenegro', 'bosnia', 'serbia'] },
       { key: 'project_type', label: 'Project Type', type: 'select', options: ['', 'design-build', 'epc', 'construction-management', 'turnkey'], description: 'Contract framework style.' },
@@ -430,20 +432,36 @@ function renderEditor(section, data) {
 
   // Image upload handlers
   editorView.querySelectorAll('.image-upload-zone input[type=file][data-field]').forEach(input => {
-    input.addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const zone = input.closest('.image-upload-zone');
-      zone.innerHTML = '<p>Uploading...</p>';
-      try {
-        const result = await uploadFile(file);
-        const hiddenInput = document.querySelector(`[name="${input.dataset.field}"]`);
-        hiddenInput.value = result.url;
-        zone.innerHTML = `<img src="${result.url}" class="image-preview"><p style="margin-top:8px;font-size:.8rem">Click to change</p><input type="file" accept="image/*,video/*" data-field="${input.dataset.field}">`;
-        // Re-bind
-        zone.querySelector('input[type=file]').addEventListener('change', arguments.callee);
-      } catch { zone.innerHTML = '<p style="color:var(--danger)">Upload failed</p>'; }
-    });
+    const setupListener = (inp) => {
+      inp.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const zone = inp.closest('.image-upload-zone');
+        zone.innerHTML = '<p>Uploading...</p>';
+        try {
+          const result = await uploadFile(file);
+          // Set value to all matching inputs
+          document.querySelectorAll(`[name="${inp.dataset.field}"]`).forEach(el => {
+            el.value = result.url;
+          });
+          // Update external preview image
+          const img = document.getElementById(`preview-${inp.dataset.field}`);
+          if (img) {
+            img.src = result.url;
+            img.style.display = 'block';
+          }
+          // Restore upload zone to pristine state
+          zone.innerHTML = `<i class="ph ph-upload-simple"></i><p>Click or drag to upload</p><input type="file" accept="image/*,video/*" data-field="${inp.dataset.field}">`;
+          setupListener(zone.querySelector('input[type=file]'));
+          toast('Image uploaded successfully');
+        } catch(err) {
+          toast(err.message || 'Upload failed', 'error');
+          zone.innerHTML = `<i class="ph ph-upload-simple"></i><p style="color:var(--danger)">Upload failed: ${err.message || 'Unknown error'}</p><input type="file" accept="image/*,video/*" data-field="${inp.dataset.field}">`;
+          setupListener(zone.querySelector('input[type=file]'));
+        }
+      });
+    };
+    setupListener(input);
   });
 
   // Multi-image gallery upload handlers
@@ -580,10 +598,9 @@ function renderField(field, data) {
   }
   if (field.type === 'image') {
     return `<div class="form-group"><label>${field.label}</label>
-      <input type="hidden" name="${field.key}" value="${val}">
-      ${val ? `<img src="${val}" class="image-preview" onerror="this.style.display='none'">` : ''}
+      ${val ? `<img src="${val}" class="image-preview" id="preview-${field.key}" onerror="this.style.display='none'">` : `<img src="" class="image-preview" id="preview-${field.key}" style="display:none;" onerror="this.style.display='none'">`}
       <div class="image-upload-zone" style="margin-top:8px"><i class="ph ph-upload-simple"></i><p>Click or drag to upload</p><input type="file" accept="image/*,video/*" data-field="${field.key}"></div>
-      <input type="text" name="${field.key}" value="${val}" placeholder="Or enter URL directly" style="margin-top:8px">
+      <input type="text" name="${field.key}" value="${val}" placeholder="Or enter URL directly" oninput="const img=document.getElementById('preview-${field.key}'); if(img) { img.src=this.value; img.style.display=this.value?'block':'none'; }" style="margin-top:8px">
       ${descHtml}
     </div>`;
   }

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "cms": "php -S localhost:8000 router.php",
-    "dev:all": "php -S localhost:8000 router.php & vite",
+    "cms": "php -d upload_max_filesize=100M -d post_max_size=100M -S localhost:8000 router.php",
+    "dev:all": "php -d upload_max_filesize=100M -d post_max_size=100M -S localhost:8000 router.php & vite",
     "build": "vite build",
     "preview": "vite preview"
   },
