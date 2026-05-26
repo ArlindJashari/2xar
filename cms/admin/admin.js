@@ -642,6 +642,23 @@ async function renderSettings(area) {
           <button type="submit" class="btn btn-primary"><i class="ph ph-check"></i> Save All Settings</button>
         </div>
       </form>
+    </div>
+    
+    <div class="editor-panel" style="max-width:700px; margin-top:32px;">
+      <h3 style="color:var(--danger)">Admin Security</h3>
+      <form id="passwordForm">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input type="password" id="current_password" required>
+        </div>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" id="new_password" required>
+        </div>
+        <div class="editor-actions">
+          <button type="submit" class="btn btn-primary"><i class="ph ph-lock"></i> Change Password</button>
+        </div>
+      </form>
     </div>`;
 
   document.getElementById('settingsForm').addEventListener('submit', async (e) => {
@@ -652,6 +669,23 @@ async function renderSettings(area) {
     }));
     await api('/settings', { method: 'PUT', body: { settings } });
     toast('Settings saved!');
+  });
+
+  document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await api('/auth/password', {
+        method: 'PUT',
+        body: {
+          current_password: document.getElementById('current_password').value,
+          new_password: document.getElementById('new_password').value
+        }
+      });
+      toast('Password changed successfully!');
+      e.target.reset();
+    } catch (err) {
+      toast(err.message, 'error');
+    }
   });
 }
 

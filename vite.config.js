@@ -40,9 +40,9 @@ export default defineConfig({
   server: {
     open: true,
     proxy: {
-      '/api': 'http://localhost:3001',
-      '/admin': 'http://localhost:3001',
-      '/cms/uploads': 'http://localhost:3001',
+      '/api': 'http://localhost:8000',
+      '/admin': 'http://localhost:8000',
+      '/cms/uploads': 'http://localhost:8000',
     }
   }
 });
